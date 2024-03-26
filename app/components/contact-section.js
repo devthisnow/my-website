@@ -1,10 +1,92 @@
+import Image from "next/image";
 
 export default function ContactMe(props) {
     return (
         <section className="w-11/12 bg-white p-8 rounded-lg shadow-md m-6">
             <h2 className="text-xl font-bold text-gray-700 mb-4">Contact me</h2>
-            <p className="text-gray-700 mb-4">Instantly get replied to in the AI-powered messenger</p>
-            <button className="px-4 py-2 rounded-md bg-gray-300 text-neutral-700 hover:bg-gray-700 hover:text-gray-100 focus:outline-none">Get in touch</button>
+            <p className="text-gray-700 mb-4">Get an instant reply in the AI-powered messenger {'->'}</p>
+            <div className="flex justify-between">
+                <div className="min-w-fit">
+                    <ul>
+                        <li>
+                            <div className="flex items-center text-gray-700 mb-4">
+                                <Image
+                                    className="dark:drop-shadow-[0_0_0.3rem_#ffffff70]"
+                                    src="/icons/Email.svg"
+                                    alt="Email icon"
+                                    width={38}
+                                    height={38}
+                                    priority
+                                /><text className="ml-2">Email</text>
+                            </div>
+                        </li>
+                        <li>
+                            <div className="flex items-center text-gray-700 mb-4">
+                                <Image
+                                    className="dark:drop-shadow-[0_0_0.3rem_#ffffff70]"
+                                    src="/icons/Linkedin.svg"
+                                    alt="LinkedIn icon"
+                                    width={38}
+                                    height={38}
+                                    priority
+                                /><text className="ml-2">LinkedIn</text>
+                            </div>
+                        </li>
+                        <li>
+                            <div className="flex items-center text-gray-700 mb-4">
+                                <Image
+                                    className="dark:drop-shadow-[0_0_0.3rem_#ffffff70]"
+                                    src="/icons/X_Twitter_icon.svg"
+                                    alt="X icon"
+                                    width={38}
+                                    height={38}
+                                    priority
+                                /><text className="ml-2">X (Twitter)</text>
+                            </div>
+                        </li>
+                        <li>
+                            <div className="flex items-center text-gray-700 mb-4">
+                                <Image
+                                    className="dark:drop-shadow-[0_0_0.3rem_#ffffff70]"
+                                    src="/icons/Facebook.svg"
+                                    alt="Facebook icon"
+                                    width={38}
+                                    height={38}
+                                    priority
+                                /><text className="ml-2">Facebook</text>
+                            </div>
+                        </li>
+                        <li>
+                            <div className="flex items-center text-gray-700 mb-4">
+                                <Image
+                                    className="dark:drop-shadow-[0_0_0.3rem_#ffffff70]"
+                                    src="/icons/Telegram.svg"
+                                    alt="Telegram icon"
+                                    width={38}
+                                    height={38}
+                                    priority
+                                /><text className="ml-2">Telegram</text>
+                            </div>
+                        </li>
+                        <li>
+                            <div className="flex items-center text-gray-700 mb-4">
+                                <Image
+                                    className="dark:drop-shadow-[0_0_0.3rem_#ffffff70]"
+                                    src="/icons/instagram.svg"
+                                    alt="LinkedIn icon"
+                                    width={38}
+                                    height={38}
+                                    priority
+                                /><text className="ml-2">Instagram</text>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div className="w-4/12">
+                    <div className="bg-gray-700 min-h-full rounded-lg m-0"></div>
+                </div>
+            </div>
+
         </section>
     );
 };

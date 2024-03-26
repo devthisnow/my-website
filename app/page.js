@@ -7,7 +7,7 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="flex flex-col justify-start min-h-screen items-center p-4">
+    <main className="flex flex-col justify-start grow items-center p-4">
       <HeroSection name="hello" />
       <TechStack name="hello" />
       <Projects name="hello" />
