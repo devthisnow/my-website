@@ -4,10 +4,10 @@ import AiChat from "./ai-chat";
 export default function ContactMe(props) {
     return (
         <section className="w-11/12 bg-white p-8 rounded-lg shadow-md m-6">
-            <div className="flex justify-between">
-                <div className="min-w-fit">
+            <div className="flex justify-between flex-col md:flex-row gap-4">
+                <div className="min-w-1/2">
                     <h2 className="text-xl font-bold text-gray-700 mb-4">Contact me</h2>
-                    <p className="text-gray-700 mb-4">Get an instant reply in the AI-powered messenger {'->'}</p>
+                    <p className="text-gray-700 mb-4 text-balance">Get an instant reply in the AI-powered messenger {'->'}</p>
                     <ul>
                         <li>
                             <div className="flex items-center text-gray-700 mb-4">
@@ -83,7 +83,7 @@ export default function ContactMe(props) {
                         </li>
                     </ul>
                 </div>
-                <div className="w-3/12 min-w-72 max-w-96 h-[400px]">
+                <div className="w-3/12 min-w-72 max-w-96 h-[440px]">
                     <AiChat />
                 </div>
             </div>
