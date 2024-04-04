@@ -25,7 +25,7 @@ export default function ContactMe(props) {
                             <div className="flex items-center text-gray-700 mb-4">
                                 <Image
                                     className="dark:drop-shadow-[0_0_0.3rem_#ffffff70]"
-                                    src="/icons/Linkedin.svg"
+                                    src="/icons/LinkedIn.svg"
                                     alt="LinkedIn icon"
                                     width={38}
                                     height={38}
@@ -73,7 +73,7 @@ export default function ContactMe(props) {
                             <div className="flex items-center text-gray-700 mb-4">
                                 <Image
                                     className="dark:drop-shadow-[0_0_0.3rem_#ffffff70]"
-                                    src="/icons/instagram.svg"
+                                    src="/icons/Instagram.svg"
                                     alt="LinkedIn icon"
                                     width={38}
                                     height={38}

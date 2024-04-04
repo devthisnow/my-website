@@ -21,30 +21,31 @@ export default function AiChat(props) {
     }, [inputValue]);
 
     const searchHints = () => {
-        setHintsMarkup([]);
         const request = inputValue.replaceAll(/\s\s+/g, " ").split(" ");
-        // console.log(request.length);
+        setHintsMarkup(hintsMarkup => hintsMarkup >= 4 ? hintsMarkup.splice(0, 4) : []);
 
-        if (inputValue.trim() != "") {
+        if (request[0].trim() != "") {
             questionsArray.forEach((qtn, i) => {
                 if (qtn["qa" + (i + 1)].toLowerCase().includes(request[0].toLowerCase())) {
-                    hints.push([qtn["qa" + (i + 1)], "qa" + (i + 1), i.toString()]);
+                    hints.length < 4 ? hints.push([qtn["qa" + (i + 1)], "qa" + (i + 1), i.toString()]) : null;
                 }
             });
 
             // console.log(hints.length);
-            if (request.length > 1) {
-                cpxHints = hints.filter((hint, ind) => {
-                    // console.log(hint[0]);
-                    return hint[0].toLowerCase().includes(request[1].toLowerCase());
-                    // return true
-                });
+
+            for (let j = 1; j < request.length; j++) {
+                if (request.length > j) {
+                    console.log(request.length);
+                    cpxHints = hints.filter((hint, ind) => {
+                        request[j] == "" ? request[j] = request[j - 1] : null;
+                        console.log(request);
+                        return hint[0].toLowerCase().includes(request[j].toLowerCase());
+                    });
+                }
                 hints = [];
                 hints.push(...cpxHints);
-                // console.log(cpxHints, request, hints);
             }
         }
-
 
         if (inputValue != "") {
             for (let i = 0; i < hints.length && i < 4; i++) {
@@ -58,7 +59,6 @@ export default function AiChat(props) {
             setHintsMarkup([]);
             return;
         }
-        // console.log(hintsMarkup, hints, answerKey);
     }
 
     useEffect(() => {
@@ -69,50 +69,44 @@ export default function AiChat(props) {
         const hintIndex = e.currentTarget.id.split("-")[2];
         const qaIndex = e.currentTarget.id.split("-")[1];
         const qaId = e.currentTarget.id.split("-")[0];
-        // console.log("ID: ", qaId, ", index: ", qaIndex);
         setChatMessages((chatMessages) => [...chatMessages, { q: hints[hintIndex][0] }]);
         setChatMessages((chatMessages) => [...chatMessages, { a: answersArray[qaIndex][qaId] }]);
-        // console.log(hints[hintIndex][0], answersArray[qaIndex][qaId]);
-        // console.log(chatMessages);
         setInputValue("");
     }
 
     const handleChange = (e) => {
         e.preventDefault();
-        // console.log(inputValue);
         setChatMessages((chatMessages) => [...chatMessages, { q: inputValue }]);
         scrollToMsg.current.scrollTop = scrollToMsg.current.scrollHeight;
-        // console.log(inputValue, chatMessages, scrollToMsg);
         getAnswer();
         setInputValue("");
     }
 
     const getAnswer = () => {
         const answer = [];
-        const request = inputValue.replaceAll(/\s\s+/g, " ").split(" ");
-        // console.log(request);
         answersArray.some((asw, i) => {
+            // console.log("Search in answers...");
             if (asw["qa" + (i + 1)].toLowerCase().includes(inputValue.toLowerCase())) {
-                answer.push(asw["qa" + (i + 1)]);
-                setChatMessages((chatMessages) => [...chatMessages, { q: `Showing answer for: \ n"${questionsArray[i]["qa" + (i + 1)]}"` }]);
-                setChatMessages((chatMessages) => [...chatMessages, { a: answersArray[i]["qa" + (i + 1)] }]);
-                return;
-            }
-        });
-        if (answer.length == 0) {
-            questionsArray.some((asw, i) => {
-                if (asw["qa" + (i + 1)].toLowerCase().includes(inputValue.toLowerCase())) {
+                if (answer.length === 0) {
                     answer.push(asw["qa" + (i + 1)]);
                     setChatMessages((chatMessages) => [...chatMessages, { q: `Showing answer for: \n"${questionsArray[i]["qa" + (i + 1)]}"` }]);
                     setChatMessages((chatMessages) => [...chatMessages, { a: answersArray[i]["qa" + (i + 1)] }]);
-                    return;
+                }
+            }
+        });
+        if (answer.length == 0) {
+            // console.log("...search in questions");
+            questionsArray.some((asw, i) => {
+                if (asw["qa" + (i + 1)].toLowerCase().includes(inputValue.toLowerCase())) {
+                    if (answer.length === 0) {
+                        answer.push(asw["qa" + (i + 1)]);
+                        setChatMessages((chatMessages) => [...chatMessages, { q: `Showing answer for: \n"${questionsArray[i]["qa" + (i + 1)]}"` }]);
+                        setChatMessages((chatMessages) => [...chatMessages, { a: answersArray[i]["qa" + (i + 1)] }]);
+                    }
                 }
             });
         }
-        // console.log(answer);
         answer.length > 0 ? null : setChatMessages((chatMessages) => [...chatMessages, { a: "I'm sorry, I need to take a minute to find an answer for you..." }]);
-        // console.log(answers[0]);
-        // return answers;
     }
 
     return (
@@ -152,7 +146,6 @@ export default function AiChat(props) {
                 <div id="chat-tips" className={"flex flex-col bg-slate-300 p-2 transition-height duration-1000 ease-in-out"}>
                     <section id="chat-header" className="flex flex-col items-start justify-start gap-1 bg-slate-300 mx-2">
                         <p className="text-xs mb-1">Popular related questions:</p>
-                        {/* <QuickHints mrup={hintsMarkup} /> */}
                         {hintsMarkup.map(it => it)}
                     </section>
                 </div>
