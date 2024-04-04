@@ -1,4 +1,5 @@
 'use client'
+import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 import { answersArray, questionsArray } from "./ai-chat-array";
 
@@ -124,8 +125,8 @@ export default function AiChat(props) {
                     chatMessages.map((it, i) => {
                         if (Object.keys(it)[0] == "q")
                             return (
-                                <div className="flex flex-row justify-end items-end gap-0.5 ml-4 ">
-                                    <div key={"kndx" + i * 13} className="bg-slate-200 px-2 py-1 text-sm mb-3 rounded-l-md w-11/12 rounded-tr-md">
+                                <div key={"lndx" + i * 13} className="flex flex-row justify-end items-end gap-0.5 ml-4 ">
+                                    <div className="bg-slate-200 px-2 py-1 text-sm mb-3 rounded-l-md w-11/12 rounded-tr-md">
                                         <p className="text-pretty break-words">{it.q}</p>
                                     </div>
                                     <div className="flex items-center justify-center min-w-3 min-h-3 mb-3 bg-slate-200 rounded-r-md rounded-tl-md">
@@ -137,8 +138,8 @@ export default function AiChat(props) {
                             );
                         else if (Object.keys(it)[0] == "a")
                             return (
-                                <div key={"kndx" + i * 17} className="flex justify-start flex-row items-end gap-0.5 mr-4">
-                                    <img src="../favicon.ico" alt="" className="w-3 h-3 mb-3 rounded-l-md rounded-tr-md bg-slate-200" />
+                                <div key={"mndx" + i * 17} className="flex justify-start flex-row items-end gap-0.5 mr-4">
+                                    <Image width={0} height={0} src="/favicon.ico" alt="" className="w-3 h-3 mb-3 rounded-l-md rounded-tr-md bg-slate-200" />
                                     <div className="bg-slate-700 px-2 py-1 mr-4 text-sm mb-3 rounded-r-md w-11/12 rounded-tl-md">
                                         <p className="text-pretty text-white break-words">{it.a}</p>
                                     </div>
