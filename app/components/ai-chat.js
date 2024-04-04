@@ -10,11 +10,13 @@ export default function AiChat(props) {
 
     const [inputValue, setInputValue] = useState("");
     const [hintsMarkup, setHintsMarkup] = useState([]);
+    // const [answerNotFound, setAnswerNotFound] = useState(true);
     const [chatMessages, setChatMessages] = useState([{ a: "Please start typing and use AI hint for a question." }]);
     const scrollToMsg = useRef(null);
 
     let hints = [];
     let cpxHints = [];
+
 
     useEffect(() => {
         scrollToMsg.current.scrollTop = scrollToMsg.current.scrollHeight;
@@ -24,27 +26,33 @@ export default function AiChat(props) {
         const request = inputValue.replaceAll(/\s\s+/g, " ").split(" ");
         setHintsMarkup(hintsMarkup => hintsMarkup >= 4 ? hintsMarkup.splice(0, 4) : []);
 
-        if (request[0].trim() != "") {
-            questionsArray.forEach((qtn, i) => {
-                if (qtn["qa" + (i + 1)].toLowerCase().includes(request[0].toLowerCase())) {
-                    hints.length < 4 ? hints.push([qtn["qa" + (i + 1)], "qa" + (i + 1), i.toString()]) : null;
-                }
-            });
+        for (let k = 0; k < request.length; k++) {
+            // console.log("I'm here and k =", k);
+            console.log("<--Out of loop ", request[k]);
+            if (request[k].trim() != "") {
+                questionsArray.forEach((qtn, i) => {
+                    if (qtn["qa" + (i + 1)].toLowerCase().includes(request[k].toLowerCase())) {
+                        hints.length < 4 ? hints.push([qtn["qa" + (i + 1)], "qa" + (i + 1), i.toString()]) : null;
+                    }
+                });
 
-            // console.log(hints.length);
+                // console.log(hints.length);
 
-            for (let j = 1; j < request.length; j++) {
-                if (request.length > j) {
-                    console.log(request.length);
-                    cpxHints = hints.filter((hint, ind) => {
-                        request[j] == "" ? request[j] = request[j - 1] : null;
-                        console.log(request);
-                        return hint[0].toLowerCase().includes(request[j].toLowerCase());
-                    });
+                for (let j = k + 1; j < request.length; j++) {
+                    if (request.length > j) {
+                        cpxHints = hints.filter((hint, ind) => {
+                            request[j] == "" ? request[j] = request[j - 1] : null;
+                            console.log("-->inside loop ", request[j]);
+                            // console.log(request);
+                            return hint[0].toLowerCase().includes(request[j].toLowerCase());
+                        });
+                    }
+                    hints = [];
+                    hints.push(...cpxHints);
                 }
-                hints = [];
-                hints.push(...cpxHints);
             }
+            hints.length > 0 ? k = request.length + 1 : null;
+            console.log("Current request array is ", request, " hints: ", hints.length);
         }
 
         if (inputValue != "") {
