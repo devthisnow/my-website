@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function TechStack(props) {
     return (
         <section className="w-11/12 bg-white p-8 rounded-lg shadow-md m-6">
-            <p className="text-gray-700 mb-4">Tech stack is HTML, CSS, React JS, Next JS, JavaScript, TypeScript, TailWind, SASS</p>
+            <p className="text-gray-700 mb-4">As a Tech stack is HTML, CSS, React JS, Next JS, JavaScript, TypeScript, TailWind, SASS</p>
             <div className="flex gap-2">
                 <Image
                     className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70]"

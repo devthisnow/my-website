@@ -4,9 +4,6 @@ import LoaderDots from "@/public/loader-dots.svg";
 import { useState, useRef, useEffect } from "react";
 import { answersArray, questionsArray } from "./ai-chat-array";
 
-// const msgs = [{ q: "First proident consectetur eiusmod eu amet id enim culpa dolor eiusmod pariatur" }, { q: "Second laboris amet cillum fugiat" }, { a: "Veniam velit qui ad laborum" }, { q: "Last message pariatur esse aliquip exercitation quis incididunt ad amet aliquip ad duis est anim" }, { q: "Latest one deserunt est commodo laboris Lorem pariatur dolor culpa anim aute ea." }];
-const msgs = [];
-
 export default function AiChat(props) {
 
     const [inputValue, setInputValue] = useState("");
@@ -21,7 +18,7 @@ export default function AiChat(props) {
 
     useEffect(() => {
         scrollToMsg.current.scrollTop = scrollToMsg.current.scrollHeight;
-    }, [inputValue, hintsMarkup]);
+    }, [inputValue, hintsMarkup, chatMessages]);
 
     const searchHints = () => {
         const request = inputValue.replaceAll(/\s\s+/g, " ").split(" ");
@@ -55,11 +52,12 @@ export default function AiChat(props) {
             hints.length > 0 ? k = request.length + 1 : null;
             // console.log("Current request array is ", request, " hints: ", hints.length);
         }
+        const animationsArray = ['animate-fade-in', 'animate-fade-in-50', 'animate-fade-in-100', 'animate-fade-in-150',];
 
         if (inputValue != "") {
             for (let i = 0; i < hints.length && i < 4; i++) {
                 setHintsMarkup((hintsMarkup) => [...hintsMarkup,
-                <div key={"kndx" + i} id={hints[i][1] + "-" + hints[i][2] + "-" + i.toString()} onClick={(e) => sendQuestion(e)} className="flex justify-start flex-row items-end gap-0.5 px-3 py-1 border border-slate-600 rounded-full hover:bg-slate-200 hover:cursor-pointer" >
+                <div key={hints[i][1] + "-" + hints[i][2] + "-" + i.toString()} id={hints[i][1] + "-" + hints[i][2] + "-" + i.toString()} onClick={(e) => sendQuestion(e)} className={"flex justify-start flex-row items-end gap-0.5 px-3 py-1 border border-slate-600 rounded-full hover:bg-slate-200 hover:cursor-pointer " + animationsArray[i]} >
                     <p className="text-pretty text-xs break-words">{hints[i][0]}</p>
                 </div >
                 ])
@@ -70,9 +68,15 @@ export default function AiChat(props) {
         }
     }
 
-    useEffect(() => {
-        searchHints();
-    }, [inputValue]);
+    useEffect(
+        () => {
+            // Debouncing the request to optimal performance
+            const dbTimeoutId = setTimeout(() => {
+                searchHints();
+            }, 250);
+            return () => clearTimeout(dbTimeoutId);
+        },
+        [inputValue]);
 
     const sendQuestion = (e) => {
         const hintIndex = e.currentTarget.id.split("-")[2];
@@ -159,11 +163,11 @@ export default function AiChat(props) {
                 }
             </div>
             {
-                // inputValue.trim() != "" &&
-                <div id="chat-tips" className={"grid bg-slate-300 px-2 transition-all duration-500 ease-out " + (inputValue.trim() == "" ? "grid-rows-animate-height-closed" : "grid-rows-animate-height-open py-2")}>
-                    <section id="chat-header" className="flex flex-col items-start justify-start gap-1 overflow-hidden bg-slate-300 mx-2">
+                // Hints rendering
+                <div id="chat-tips" className={"grid bg-slate-300 px-2 transition-all duration-300 ease-in-out " + (inputValue.trim() == "" ? "grid-rows-animate-height-closed" : "grid-rows-animate-height-open py-2")}>
+                    <section id="tips-header" className="flex flex-col items-start justify-start gap-1  bg-slate-300 mx-2 overflow-hidden">
                         <p className="text-xs mb-1">Popular related questions:</p>
-                        {hintsMarkup.length == 0 ? <div className="w-12"><Image src={LoaderDots} /></div> : hintsMarkup.map(it => it)}
+                        {hintsMarkup.length == 0 && inputValue != "" ? <div className="w-10"><Image src={LoaderDots} alt="Loader icon" /></div> : hintsMarkup.map(it => it)}
                     </section>
                 </div>
             }
