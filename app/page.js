@@ -1,6 +1,7 @@
 import HeroSection from "./components/hero-section";
 import TechStack from "./components/tech-stack-section";
 import Projects from "./components/projects-section";
+import PointOD from "./components/point-of-difference";
 import ReasonsToWork from "./components/reasoning-section";
 import ContactMe from "./components/contact-section";
 import Image from "next/image";
@@ -8,9 +9,10 @@ import Image from "next/image";
 export default function Home() {
   return (
     <main className="flex flex-col justify-start grow items-center">
-      <HeroSection name="hello" />
-      <TechStack name="hello" />
-      <Projects name="hello" />
+      <HeroSection name="Hero section" />
+      <PointOD name="Point of difference" />
+      <Projects name="Portfolio" />
+      <TechStack name="Techstack" />
       <ReasonsToWork />
       <ContactMe />
 

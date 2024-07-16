@@ -1,10 +1,52 @@
 
 export default function Projects(props) {
     return (
-        <section className="w-11/12 bg-white p-8 rounded-lg shadow-md m-6">
-            <h2 className="text-xl font-bold text-gray-700 mb-4">Selected Projects & Work</h2>
-            <p className="text-gray-700 mb-4">Here I will place a few of the recent projects. Very soon.</p>
-            <button className="px-4 py-2 rounded-md bg-gray-300 text-neutral-700 hover:bg-gray-700 hover:text-gray-100 focus:outline-none">Get in touch</button>
+        <section className="flex flex-col justify-start w-screen min-h-[890px] max-h-[890px] pl-[80px]">
+            <h2 className="text-[44px] font-semibold mt-[130px] ">Selected Projects & Work</h2>
+            <div className="flex flex-row gap-6 ">
+                <div className="m-auto ">
+                    <div className="flex flex-row justify-center items-center w-[880px] min-h-[550px] bg-mygray mt-[30px] ">
+                        <button className="flex flex-row justify-center items-center gap-3 text-[22px] font-semibold rounded-full outline outline-3 w-[187px] h-[47px] hover:bg-transparent hover:outline-black focus:outline-black ">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                                <g stroke="#000">
+                                    <circle cx="12" cy="12" r="5"></circle>
+                                    <circle
+                                        cx="12"
+                                        cy="12"
+                                        r="10"
+                                        fill="none"
+                                        strokeDasharray="2,2"
+                                        strokeWidth="3"
+                                    ></circle>
+                                </g>
+                            </svg>
+                            More soon
+                        </button>
+                    </div>
+                    <p className="text-[28px] font-semibold mt-[30px] ">Next JS Example</p>
+                </div>
+                <div className="m-auto ">
+                    <div className="flex flex-row justify-center items-center w-[880px] min-h-[550px] bg-mygray mt-[30px] ">
+                        <button className="flex flex-row justify-center items-center gap-3 text-[22px] font-semibold rounded-full outline outline-3 w-[187px] h-[47px] hover:bg-transparent hover:outline-black focus:outline-black ">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                                <g stroke="#000">
+                                    <circle cx="12" cy="12" r="5"></circle>
+                                    <circle
+                                        cx="12"
+                                        cy="12"
+                                        r="10"
+                                        fill="none"
+                                        strokeDasharray="2,2"
+                                        strokeWidth="3"
+                                    ></circle>
+                                </g>
+                            </svg>
+                            More soon
+                        </button>
+                    </div>
+                    <p className="text-[28px] font-semibold mt-[30px] ">React JS Example</p>
+                </div>
+            </div>
         </section>
     );
 };
