@@ -1,18 +1,23 @@
 import HeroSection from "./components/hero-section";
+import Skillset from "./components/skillset-section";
 import TechStack from "./components/tech-stack-section";
 import Projects from "./components/projects-section";
 import PointOD from "./components/point-of-difference";
 import ReasonsToWork from "./components/reasoning-section";
+import ContactWithAI from "./components/contact-with-ai-section";
+import ScrollingQuote from "./components/scrolling-quote-section";
 import ContactMe from "./components/contact-section";
 import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="flex flex-col justify-start grow items-center">
+    <main className="flex flex-col w-auto justify-start grow items-center">
       <HeroSection name="Hero section" />
       <PointOD name="Point of difference" />
       <Projects name="Portfolio" />
-      <TechStack name="Techstack" />
+      <Skillset name="Skillset and tech-stack" />
+      <ContactWithAI name="Contact with AI" />
+      <ScrollingQuote name="Quote" />
       <ReasonsToWork />
       <ContactMe />
 

@@ -5,7 +5,7 @@ import myPic from "../../public/main-picture.png";
 
 export default function HeroSection(props) {
     return (
-        <section className="flex flex-row justify-center w-screen min-h-[890px] max-h-[890px] bg-mygray pl-[80px]">
+        <section className="flex flex-row justify-center w-full min-h-[890px] max-h-[890px] bg-mygray pl-[80px]">
             <div className="flex flex-col justify-between w-1/2 grow h-auto">
                 <nav className="flex justify-between font-normal text-[18px] w-5/6 items-center self-start pt-[50px]">
                     <button className="hover:text-[#14C6B7] focus:outline-none">
