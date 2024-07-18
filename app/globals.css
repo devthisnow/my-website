@@ -25,7 +25,7 @@
 
 /* width */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 18px;
 }
 
 ::-webkit-scrollbar-track {
@@ -53,7 +53,7 @@
   }
 } */
 
-body {
+/* body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -64,7 +64,7 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
-}
+} */
 
 @layer utilities {
   .text-balance {

@@ -25,7 +25,7 @@ export default function HeroSection(props) {
                     <h2 className="text-[107px] font-semibold text-black mb-2">Ilia Kalugin</h2>
                     <p className="text-black text-[28px] w-3/6">Certified Front-End Developer With an Advanced Skillset</p>
                 </div>
-                <button className="px-4 py-2 mb-[50px] rounded-full outline outline-3 w-[77px] h-[77px] hover:bg-transparent hover:outline-black focus:outline-black">
+                <button className="px-4 py-2 mb-[50px] rounded-full outline outline-3 w-[77px] h-[77px] hover:bg-transparent hover:outline-black focus:outline-black animate-bounce ">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25" className='m-auto' height={30}>
                         <path d="m18.294 16.793-5.293 5.293V1h-1v21.086l-5.295-5.294-.707.707L12.501 24l6.5-6.5-.707-.707z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
