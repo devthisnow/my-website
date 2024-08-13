@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Skillset(props) {
     return (
-        <section className="grid grid-cols-12 grid-rows-1 gap-x-[20px] w-full px-[80px] mt-[160px] ">
+        <section className="grid grid-cols-12 grid-rows-1 gap-x-[20px] w-full px-[80px] mt-[160px] overflow-hidden ">
             <h2 className="col-span-3 text-[107px] font-semibold leading-none ">Skillset</h2>
             <div className="col-span-7 col-start-6 row-start-2 w-full min-h-full h-auto ">
                 <div className="flex flex-row justify-start items-center border-t-[3px] max-h-[800px] border-black px-[30px] min-h-[130px] py-[15px]">

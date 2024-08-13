@@ -19,6 +19,7 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 255, 255, 255;
   --background-end-rgb: 255, 255, 255;
+  /* --scroll-quote: 0; */
 }
 
 /*--- Scrollbar customization start ---*/
@@ -70,4 +71,8 @@
   .text-balance {
     text-wrap: balance;
   }
+
+  /* .quote-anim {
+    translate: calc(-1% * var(--scroll-quote)) 0;
+  } */
 }

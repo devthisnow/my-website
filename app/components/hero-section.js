@@ -17,7 +17,7 @@ export default function HeroSection(props) {
                     <button className="hover:text-[#14C6B7] focus:outline-none">
                         <Link href="/about">Soft Skills</Link>
                     </button>
-                    <button className="hover:text-[#14C6B7] focus:outline-none">
+                    <button className="hover:text-[#14C6B7] focus:outline-none capitalize">
                         <Link href="/about">Contact me</Link>
                     </button>
                 </nav>
