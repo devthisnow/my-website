@@ -90,12 +90,12 @@ export default function ScrollingQuote(props) {
             window.removeEventListener("scroll", handleQuoteScroll);
         }
 
-    }, [quoteVisible])
+    }, [quoteVisible, options])
 
     return (
         <section className="flex justify-center items-center w-full bg-mygray min-h-[100vh]">
             <div ref={quoteRef} className=" leading-none overflow-hidden max-h-[150px] pl-[80px]">
-                <h4 className={`text-[168px] font-semibold text-right max-w-screen text-nowrap uppercase transition-all duration-750 ease-linear opacity-0 ${quoteClass} `}>Everyone's Favourite Webdev.</h4>
+                <h4 className={`text-[168px] font-semibold text-right max-w-screen text-nowrap uppercase transition-all duration-750 ease-linear opacity-0 ${quoteClass} `}>Everyone&apos;s Favourite Webdev.</h4>
             </div>
         </section>
     );
