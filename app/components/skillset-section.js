@@ -80,7 +80,7 @@ export default function Skillset(props) {
                 <div className="flex flex-row justify-start items-center border-y-[3px] max-h-[800px] border-black px-[30px] min-h-[130px] py-[15px]">
                     <div className="flex flex-col grow justify-center items-start has-[[open]]:bg-none ">
                         <details name="reqs" className="h-auto peer group w-full">
-                            <summary className="text-[28px] font-semibold cursor-pointer list-none flex flex-row justify-start items-center "><span className="grow">Others</span>
+                            <summary className="text-[28px] font-semibold cursor-pointer list-none flex flex-row justify-start items-center "><span className="grow">Other</span>
                                 <div className="size-[100px] transition-all duration-500 ease-out
                                 group-open:-rotate-45
                                 group-open:scale-75

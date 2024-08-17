@@ -5,38 +5,41 @@ import { useState, useRef, useEffect } from "react";
 export default function ScrollingQuote(props) {
     const [quoteVisible, setQuoteVisible] = useState(false);
     const [quoteClass, setQuoteClass] = useState("");
+    const [sectionClass, setSectionClass] = useState("");
+    // const [initScrollAmount, setInitScrollAmount] = useState(0);
 
     const quoteRef = useRef(null);
 
-    const ioOffset = 30;
+    const ioOffset = 10;
 
     const scrollingQuote = (elm) => {
         const viewHeight = document.documentElement.clientHeight,
             viewWidth = document.documentElement.clientWidth,
             scrollWidth = elm.scrollWidth,
             yPos = elm.getBoundingClientRect().y,
+            winScrollY = window.scrollY,
+            parentOffset = elm.parentElement.offsetTop,
             switcher = { state: true, value: 1 },
             enterPoint = +(viewHeight * ioOffset / 100 - elm.getBoundingClientRect().height * (1 - options.threshold)).toFixed(1),
             exitPoint = +(viewHeight - viewHeight * ioOffset / 100 - elm.getBoundingClientRect().height * options.threshold).toFixed(1);
 
-        // console.log("Switcher", switcher);
+        // let scrollAmount = (switcher.value + (1 - switcher.value * 2) * Math.min(Math.max((Math.round(yPos) - enterPoint), 0) / (exitPoint - enterPoint), 1)) * (scrollWidth - viewWidth);
 
-        // if (switcher.state == true) {
-        //     if (yPos > viewHeight / 2) {
-        //         switcher.value = 1;
-        //         switcher.state = false;
-        //     }
-        // }
+        let scrollRatio = elm.parentElement.offsetTop / viewHeight;
+        // Scrolling 'easeInOutQuint' function implementation
+        const t1 = scrollRatio - 1;
+        scrollRatio = scrollRatio < 0.5 ? 16 * Math.pow(scrollRatio, 5) : 1 + 16 * Math.pow(t1, 5);
 
-        let scrollAmount = (switcher.value + (1 - switcher.value * 2) * Math.min(Math.max((Math.round(yPos) - enterPoint), 0) / (exitPoint - enterPoint), 1)) * (scrollWidth - viewWidth);
+        let scrollAmount = Math.round((scrollRatio) * (scrollWidth - viewWidth));
 
-        // console.log("||||-->> scrolled from the top", ((elm.getBoundingClientRect().y + window.scrollY) - document.documentElement.scrollTop) / viewHeight);
+        // console.log("Scrolled from the top", winScrollY, initScrollAmount, scrollAmount, viewHeight, elm.parentElement.offsetTop / viewHeight);
+        // console.log("||-> scrolled from the parent start", scrollAmount, scrollWidth, viewWidth, scrollWidth - viewWidth);
 
         // document.documentElement.style.setProperty("--scroll-quote", (((elm.getBoundingClientRect().y + window.scrollY) - document.documentElement.scrollTop) / viewHeight) * 100);
 
         requestAnimationFrame(() => {
 
-            quoteRef.current.scroll({
+            elm.scroll({
                 left: scrollAmount,
                 behavior: "auto",
             });
@@ -74,9 +77,11 @@ export default function ScrollingQuote(props) {
             observer.observe(quoteRef.current);
             // console.log(quoteVisible ? "Observed" : "NOT Observed");
             quoteVisible ? setQuoteClass("opacity-100 blur-none") : setQuoteClass("opacity-50 blur-sm");
+            // quoteVisible ? setSectionClass("") : setSectionClass("");
         }
 
         if (quoteVisible) {
+            // setInitScrollAmount(window.scrollY);
             window.addEventListener("scroll", handleQuoteScroll);
             // console.log("||| main IF run");
             // console.log(">>> Entered at ", quoteRef.current.getBoundingClientRect().y);
@@ -85,7 +90,7 @@ export default function ScrollingQuote(props) {
         }
 
         return () => {
-            // console.log("-->> Return cleanup function worked...");
+            console.log("-->> SQS return cleanup function worked...");
             if (quoteRef.current) observer.unobserve(quoteRef.current);
             window.removeEventListener("scroll", handleQuoteScroll);
         }
@@ -93,9 +98,11 @@ export default function ScrollingQuote(props) {
     }, [quoteVisible, options])
 
     return (
-        <section className="flex justify-center items-center w-full bg-mygray min-h-[100vh]">
-            <div ref={quoteRef} className=" leading-none overflow-hidden max-h-[150px] pl-[80px]">
-                <h4 className={`text-[168px] font-semibold text-right max-w-screen text-nowrap uppercase transition-all duration-750 ease-linear opacity-0 ${quoteClass} `}>Everyone&apos;s Favourite Webdev.</h4>
+        <section className="relative flex justify-start w-full min-h-[200vh] bg-gradient-to-b from-neutral-400 from-50% to-emerald-200 to-100% ">
+            <div className={`flex justify-center items-center w-full bg-mygray opacity-75 h-[100vh] sticky top-0 ${sectionClass}`}>
+                <div ref={quoteRef} className={`leading-none overflow-hidden max-h-[150px] pl-[80px] `}>
+                    <h4 className={`text-[168px] font-semibold text-right max-w-screen text-nowrap uppercase transition-all duration-750 ease-linear opacity-0 ${quoteClass} `}>Everyone&apos;s Favourite Webdev.</h4>
+                </div>
             </div>
         </section>
     );

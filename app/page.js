@@ -12,7 +12,8 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="flex flex-col w-auto justify-start grow items-center">
+    <main className="flex flex-col w-auto justify-start grow items-center snap-y snap-mandatory overflow-x-clip ">
+      {/* overflow-y-auto h-[100vh] "> */}
       <HeroSection name="Hero section" />
       <PointOD name="Point of difference" />
       <Projects name="Portfolio" />

@@ -43,19 +43,31 @@ export default function Projects(props) {
     const refSlide = useRef(null);
 
     const next = () => {
-        slideNum + 1 <= projects.length ? setSlideNum(slideNum + 1) : setSlideNum(1);
+        setSlideNum(
+            slideNum + 1 <= projects.length ? slideNum + 1 : 1
+        )
     }
 
     const prev = () => {
-        slideNum - 1 > 0 ? setSlideNum(slideNum - 1) : setSlideNum(projects.length);
+        setSlideNum(
+            slideNum - 1 > 0 ? slideNum - 1 : projects.length
+        )
     }
 
     useEffect(() => {
-        refSlide.current.scrollIntoView({
+        const scrollWidth = refSlide.current.scrollWidth + 20;
+
+        refSlide.current.parentElement.scrollTo({
+            left: scrollWidth * (slideNum - 1),
             behavior: 'smooth',
-            block: 'nearest',
-            inline: 'start',
         });
+
+        // console.log(refSlide.current.parentElement.scrollLeft, slideNum);
+
+        // return () => {
+        //     console.log("Return worked", refSlide.current.parentElement.scrollLeft, slideNum);
+        // }
+
     }, [slideNum])
 
     return (
@@ -65,7 +77,7 @@ export default function Projects(props) {
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={0.7} stroke="currentColor" onClick={prev} className={`absolute cursor-pointer top-[calc(50%-100px/2-20px)] left-0 size-[100px] ml-[20px] transition-all duration-500 ${slideNum == 1 ? "opacity-0 invisible" : "opacity-90 visible"}`}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="m11.25 9-3 3m0 0 3 3m-3-3h7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                 </svg>
-                <div className="flex flex-row gap-[20px] overflow-hidden [&:scrollbar-thumb {background: #29AB87}]">
+                <div className="flex flex-row gap-[20px] overflow-hidden snap-x snap-mandatory transition ">
                     {projects.map(it => {
                         if (it.ind == slideNum) {
                             return SingleProject({ ...it, slideNum, refSlide })
@@ -86,7 +98,8 @@ function SingleProject(props) {
     // const classForScroll = props.slideNum == props.ind ? "-translate-x-[50%] " : null;
 
     return (
-        <div id={props.ind} key={props.ind * 13} ref={props.refSlide} >
+        <div id={props.ind} key={props.ind * 13} ref={props.refSlide} className="snap-always snap-start" >
+            {/* translate-x-[${(props.ind - props.slideNum) * 100}%]`}> */}
             <div className="flex flex-row justify-center items-center w-[870px] min-h-[550px] bg-mygray mt-[30px] ">
                 <button className="flex flex-row justify-center items-center gap-3 text-[22px] font-semibold rounded-full outline outline-3 w-[181px] h-[44px] hover:bg-transparent hover:outline-[#14C6B7] focus:outline-[#14C6B7] ">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" className="animate-pulse">

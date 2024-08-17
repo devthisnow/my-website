@@ -32,7 +32,7 @@ export default function ContactMe(props) {
                     </div>
 
 
-                    <button type="submit" className="block mb-4 max-w-[271px] min-w-fit h-[74px] rounded-full border-black border-[3px] hover:bg-black hover:text-white focus:bg-black focus:text-white active:bg-black active:text-white px-6 pb-2 pt-2.5 text-[28px] uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0 mt-[28px] ">Submit</button>
+                    <button type="submit" className="block mb-4 w-[271px] max-w-100% h-[74px] rounded-full border-black border-[3px] hover:bg-black hover:text-white focus:bg-black focus:text-white active:bg-black active:text-white px-6 pb-2 pt-2.5 text-[28px] uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0 mt-[28px] ">Submit</button>
                 </div>
             </div>
         </section>
