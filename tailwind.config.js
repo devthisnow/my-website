@@ -11,6 +11,9 @@ module.exports = {
         mygray: {
           DEFAULT: '#D9D9D9',
         },
+        myerror: {
+          DEFAULT: '#CE5B5B',
+        },
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

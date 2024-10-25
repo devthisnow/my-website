@@ -26,6 +26,7 @@ export default function ScrollingQuote(props) {
         // let scrollAmount = (switcher.value + (1 - switcher.value * 2) * Math.min(Math.max((Math.round(yPos) - enterPoint), 0) / (exitPoint - enterPoint), 1)) * (scrollWidth - viewWidth);
 
         let scrollRatio = elm.parentElement.offsetTop / viewHeight;
+
         // Scrolling 'easeInOutQuint' function implementation
         const t1 = scrollRatio - 1;
         scrollRatio = scrollRatio < 0.5 ? 16 * Math.pow(scrollRatio, 5) : 1 + 16 * Math.pow(t1, 5);
@@ -98,10 +99,10 @@ export default function ScrollingQuote(props) {
     }, [quoteVisible, options])
 
     return (
-        <section className="relative flex justify-start w-full min-h-[200vh] bg-gradient-to-b from-neutral-400 from-50% to-emerald-200 to-100% ">
-            <div className={`flex justify-center items-center w-full bg-mygray opacity-75 h-[100vh] sticky top-0 ${sectionClass}`}>
+        <section className="relative flex justify-start w-full min-h-[200vh] bg-gradient-to-b from-black from-50% to-gray-800 to-100% ">
+            <div className={`flex justify-center items-center w-full h-[100vh] sticky top-0 ${sectionClass}`}>
                 <div ref={quoteRef} className={`leading-none overflow-hidden max-h-[150px] pl-[80px] `}>
-                    <h4 className={`text-[168px] font-semibold text-right max-w-screen text-nowrap uppercase transition-all duration-750 ease-linear opacity-0 ${quoteClass} `}>Everyone&apos;s Favourite Webdev.</h4>
+                    <h4 className={`text-[55px] sm:text-[168px] text-white font-semibold text-right max-w-screen text-nowrap uppercase transition-all duration-750 ease-linear opacity-0 ${quoteClass} `}>Everyone&apos;s Favourite Webdev.</h4>
                 </div>
             </div>
         </section>

@@ -1,5 +1,5 @@
 import { Inter } from "next/font/google";
-import { TopMenu, Footer } from "./components/top-menu-n-footer";
+import { TopMenu, MobileMenu, Footer } from "./components/top-menu-n-footer";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -11,11 +11,12 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body >
-        {/* <TopMenu /> */}
+    <html lang="en" className="scroll-auto">
+      <body className="has-[#opened-menu]:overflow-y-hidden ">
+        {/* <TopMenu />
+        <MobileMenu /> */}
         {children}
-        {/* <Footer /> */}
+        <Footer />
       </body>
     </html >
   );

@@ -1,6 +1,7 @@
 'use client'
 import Image from "next/image";
 import LoaderDots from "@/public/loader-dots.svg";
+import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
 import { answersArray, questionsArray } from "./ai-chat-array";
 
@@ -130,7 +131,7 @@ export default function AiChat(props) {
     }
 
     return (
-        <div className="flex flex-col border-2 border-slate-300 h-full rounded-lg m-0 shadow-md">
+        <div className="flex flex-col border-2 border-slate-300 h-full rounded-lg m-0">
             <section id="chat-header" className="flex items-center justify-center min-h-10 bg-slate-300">
                 <p className="text-sm">AI Messenger</p>
             </section>
