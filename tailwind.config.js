@@ -11,6 +11,21 @@ module.exports = {
         mygray: {
           DEFAULT: '#D9D9D9',
         },
+        mywhite: {
+          DEFAULT: '#EBEBEB',
+        },
+        myblack: {
+          DEFAULT: '#020804',
+        },
+        myblue: {
+          DEFAULT: '#32B1C1',
+        },
+        mylightgray: {
+          DEFAULT: '#ECEAEA',
+        },
+        myaccent: {
+          DEFAULT: '#1BB2C8',
+        },
         myerror: {
           DEFAULT: '#CE5B5B',
         },
@@ -19,6 +34,7 @@ module.exports = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "my-grad-acc": "linear-gradient(to bottom, #008299, #0097b1, #00accb, #00c2e5, #00d8ff)",
       },
       gridTemplateRows: {
         "animate-height-open": "1fr",

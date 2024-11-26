@@ -102,7 +102,7 @@ export default function ScrollingQuote(props) {
         <section className="relative flex justify-start w-full min-h-[200vh] bg-gradient-to-b from-black from-50% to-gray-800 to-100% ">
             <div className={`flex justify-center items-center w-full h-[100vh] sticky top-0 ${sectionClass}`}>
                 <div ref={quoteRef} className={`leading-none overflow-hidden max-h-[150px] pl-[80px] `}>
-                    <h4 className={`text-[55px] sm:text-[168px] text-white font-semibold text-right max-w-screen text-nowrap uppercase transition-all duration-750 ease-linear opacity-0 ${quoteClass} `}>Everyone&apos;s Favourite Webdev.</h4>
+                    <h4 className={`text-[55px] sm:text-[168px] text-white font-semibold text-right max-w-screen text-nowrap uppercase transition-all duration-750 ease-linear opacity-0 ${quoteClass} `}>THE ULTIMATE WEB DEVELOPER</h4>
                 </div>
             </div>
         </section>

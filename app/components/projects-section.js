@@ -153,7 +153,7 @@ export default function Projects(props) {
     }, [slideNum])
 
     return (
-        <section id="projects" className="flex flex-col justify-start w-full sm:min-h-[890px] pl-[30px] sm:pl-[80px] " >
+        <section id="projects" className="flex flex-col justify-start w-full pl-[30px] sm:pl-[80px] " >
             <h2 className="text-[22px] sm:text-[44px] font-semibold mt-[80px] sm:mt-[130px] ">Selected Projects & Work</h2>
             <div className="relative m-0 h-full ">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={0.7} stroke="currentColor" onClick={slideNum == 1 ? null : prev} className={`hidden sm:block absolute cursor-pointer top-[calc(50%-100px/2-20px)] left-0 size-[100px] ml-[20px] transition-all duration-500 ${slideNum == 1 ? "opacity-0 invisible" : "opacity-100 visible"}`}>
@@ -201,7 +201,7 @@ function SingleProject(props) {
                 </button>
             </div>
             <div className="flex">
-                <p className="text-[22px] sm:text-[28px] font-semibold mt-[30px] cursor-pointer hover:text-[#14C6B7] ">{props.name}</p>
+                <p className="text-[22px] sm:text-[28px] font-semibold mt-[30px] cursor-pointer hover:text-[#14C6B7] leading-none">{props.name}</p>
             </div>
         </div>
     )

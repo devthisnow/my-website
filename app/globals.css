@@ -72,6 +72,10 @@
     text-wrap: balance;
   }
 
+  details summary::-webkit-details-marker {
+    display:none;
+  }
+
   /* .quote-anim {
     translate: calc(-1% * var(--scroll-quote)) 0;
   } */

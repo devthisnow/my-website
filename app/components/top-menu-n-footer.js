@@ -30,13 +30,13 @@ export function MobileMenu(props) {
     const [menuOpen, setMenuOpen] = useState(false);
     const menuHandleClick = () => {
         setMenuOpen(!menuOpen);
-        console.log(menuOpen);
+        // console.log(menuOpen);
     }
     return (
         <header className="sticky z-50 top-0 sm:hidden w-full sm:h-0 sm:opacity-0 opacity-100 transition-all duration-500">
-            <nav className={`text-white pl-[30px] border-b-[2px] h-auto ${menuOpen ? "bg-black border-none" : "bg-white border-black"}`}>
+            <nav className={`text-white pl-[30px] border-b-[2px] h-auto ${menuOpen ? "bg-myblack border-mywhite" : "bg-myblack border-mywhite"}`}>
                 <div className="flex z-50 justify-between m-auto items-center h-[52px]">
-                    <button className={`z-20 text-[22px] hover:bg-gray-300 focus:outline-none font-semibold ${menuOpen ? "text-white" : "bg-gradient-to-r from-[#14C6B7] from-50% via-[#1BB2C8] via-75% to-[#229ED9] to-100% bg-clip-text text-transparent"}`}><Link href="/">IK</Link></button>
+                    <button className={`z-20 text-[22px] hover:bg-gray-300 focus:outline-none font-semibold ${menuOpen ? "text-mywhite" : "text-mywhite"}`}><Link href="/">IK</Link></button>
                     <button className="px-4 z-50 py-2 rounded-md active:bg-none focus:outline-none pr-[30px] " onClick={menuHandleClick}>
                         {/* <Link href=""> */}
                         <svg
@@ -44,7 +44,7 @@ export function MobileMenu(props) {
                             width={16}
                             height={12}
                             fill=''
-                            className={`${menuOpen ? "stroke-white" : "stroke-black"}`}
+                            className={`${menuOpen ? "stroke-white" : "stroke-white"}`}
                         >
                             <path stroke="" strokeWidth={2} d="M0 1h16M0 6h16M0 11h16" />
                         </svg>
@@ -66,7 +66,7 @@ export function MobileMenu(props) {
                         <div>
                             <Link className='text-white text-[28px] font-semibold' href="#contact-me" onClick={menuHandleClick}>Contact me</Link>
                         </div>
-                        <svg className='mt-[7dvh]' xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" onClick={menuHandleClick}><path stroke="#fff" stroke-width="2" d="m11.023 11.023 7.954 7.954M11.023 18.977l7.954-7.954" /><circle cx="15" cy="15" r="14" stroke="#fff" stroke-width="2" /></svg>
+                        <svg className='mt-[7dvh]' xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" onClick={menuHandleClick}><path stroke="#fff" strokeWidth="2" d="m11.023 11.023 7.954 7.954M11.023 18.977l7.954-7.954" /><circle cx="15" cy="15" r="14" stroke="#fff" strokeWidth="2" /></svg>
                     </div>
                 </>
             }

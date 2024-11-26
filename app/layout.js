@@ -11,7 +11,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="scroll-auto">
+    <html lang="en" className="scroll-auto text-balance">
       <body className="has-[#opened-menu]:overflow-y-hidden ">
         {/* <TopMenu />
         <MobileMenu /> */}

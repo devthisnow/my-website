@@ -1,6 +1,7 @@
 'use client'
 import Image from "next/image";
 import LoaderDots from "@/public/loader-dots.svg";
+import avatarPicture from "@/public/avatarPicture.png";
 import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
 import { answersArray, questionsArray } from "./ai-chat-array";
@@ -131,11 +132,12 @@ export default function AiChat(props) {
     }
 
     return (
-        <div className="flex flex-col border-2 border-slate-300 h-full rounded-lg m-0">
-            <section id="chat-header" className="flex items-center justify-center min-h-10 bg-slate-300">
-                <p className="text-sm">AI Messenger</p>
-            </section>
-            <div id="chat-mid" ref={scrollToMsg} className="flex flex-col overflow-y-auto h-full bg-white p-2">
+        <div className="flex flex-col bg-mylightgray h-full rounded-[20px] sm:rounded-[34px] m-0">
+            <div id="chat-header" className="flex items-center justify-start min-h-[50px] bg-none border-b-[3px] border-mygray pl-[20px] gap-x-[10px]">
+                <Image src={avatarPicture} alt="Chat avatar icon" />
+                <p className="font-semibold text-[12px]">Let&apos;s chat</p>
+            </div>
+            <div id="chat-mid" ref={scrollToMsg} className="flex flex-col overflow-y-auto h-full bg-none px-[20px] py-[30px]">
                 {
                     chatMessages.map((it, i) => {
                         if (Object.keys(it)[0] == "q")
@@ -166,26 +168,29 @@ export default function AiChat(props) {
             {
                 // Hints rendering
                 <div id="chat-tips" className={"grid bg-slate-300 px-2 transition-all duration-300 ease-in-out " + (inputValue.trim() == "" ? "grid-rows-animate-height-closed" : "grid-rows-animate-height-open py-2")}>
-                    <section id="tips-header" className="flex flex-col items-start justify-start gap-1  bg-slate-300 mx-2 overflow-hidden">
+                    <div id="tips-header" className="flex flex-col items-start justify-start gap-1  bg-slate-300 mx-2 overflow-hidden">
                         <p className="text-xs mb-1">Popular related questions:</p>
                         {hintsMarkup.length == 0 && inputValue != "" ? <div className="w-10"><Image src={LoaderDots} alt="Loader icon" /></div> : hintsMarkup.map(it => it)}
-                    </section>
+                    </div>
                 </div>
             }
-            <div id="chat-send" className="flex min-h-12 bg-slate-300">
+            <div id="chat-send" className="flex min-h-12 bg-none">
                 <form className="flex items-center justify-between w-full" action="submit" onSubmit={(e) => handleChange(e)} >
                     <input
                         id="inputMessage"
-                        className="bg-white grow border-none rounded-full py-1 px-2 placeholder-slate-400 ml-2 pl-4 text-xs min-h-9 focus:outline-none"
+                        className="bg-mygray grow border-none rounded-full py-1 px-2 placeholder-myblack placeholder-opacity-60 ml-[20px] mb-[20px] pl-4 text-[12px] min-h-9 focus:outline-none"
                         type="text"
-                        placeholder="Put your text here..."
+                        placeholder="Ask your question here..."
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
                     />
-                    <button type="submit" className="w-9 h-9 rounded-full mx-2 bg-slate-100 text-center disabled:opacity-65 disabled:rotate-90 transition-all duration-200 ease-in-out" disabled={inputValue.trim() == "" ? true : false}>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 m-auto stroke-slate-700">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="m9 9 6-6m0 0 6 6m-6-6v12a6 6 0 0 1-12 0v-3" />
+                    <button type="submit" className="w-9 h-9 rounded-full mx-[20px] mb-[20px] bg-my-grad-acc text-center disabled:opacity-65 enabled:-rotate-90 transition-all duration-200 ease-in-out" disabled={inputValue.trim() == "" ? true : false}>
+                        <svg className="m-auto" width="5" height="8" viewBox="0 0 5 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4.85355 4.35355C5.04882 4.15829 5.04882 3.84171 4.85355 3.64645L1.67157 0.464469C1.47631 0.269207 1.15972 0.269208 0.964461 0.46447C0.7692 0.659733 0.7692 0.976315 0.964462 1.17158L3.79289 4L0.96447 6.82843C0.769208 7.02369 0.769208 7.34028 0.964471 7.53554C1.15973 7.7308 1.47632 7.7308 1.67158 7.53554L4.85355 4.35355ZM4 4.5L4.5 4.5L4.5 3.5L4 3.5L4 4.5Z" fill="white" />
                         </svg>
+                        {/* <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 m-auto stroke-slate-700">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="m9 9 6-6m0 0 6 6m-6-6v12a6 6 0 0 1-12 0v-3" />
+                        </svg> */}
                     </button>
                 </form>
             </div>

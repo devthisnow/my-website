@@ -1,22 +1,21 @@
 import Link from 'next/link'
 import Image from "next/image";
-import myPic from "../../public/main-picture.png";
+import myPic from "../../public/main-picture.jpg";
 import { TopMenu } from './top-menu-n-footer';
 
 
 export default function HeroSection(props) {
     return (
-        <section className="flex flex-col sm:flex-row justify-center w-full sm:min-h-[890px] sm:bg-mygray sm:pl-[80px] scroll-smooth">
+        <section className="flex flex-col sm:flex-row justify-center w-full sm:h-[100dvh] sm:min-h-[700px] bg-myblack text-mywhite sm:pl-[80px] scroll-smooth">
             <div className="flex flex-col justify-between sm:w-1/2 grow h-auto overflow-hidden pl-[30px] sm:pl-0">
                 <TopMenu name="Menu for desktop and tablets" />
                 <div className="h-auto">
-                    <h2 className="text-[44px] sm:text-[107px] font-semibold text-black mb-2 pt-[50px] sm:p-0">Ilia Kalugin</h2>
-                    <p className="text-black text-[22px] sm:text-[28px] w-3/4 sm:w-3/6 pb-[50px] sm:p-0">Certified Front-End Developer With an Advanced Skillset</p>
+                    <h2 className="text-[44px] sm:text-[107px] font-semibold mb-[50px] pt-[50px] sm:p-0 sm:pr-[30px] leading-none">Ilia Kalugin</h2>
+                    <p className="text-[22px] sm:text-[28px] w-[75dvw] sm:w-4/6 pb-[50px] sm:min-w-[400px] sm:p-0 leading-tight tracking-normal">Certified Front-End Developer With An Advanced Skillset</p>
                 </div>
-                <button className="hidden sm:block px-4 py-2 mb-[50px] ml-[3px] rounded-full outline outline-3 w-[77px] h-[77px] hover:bg-transparent hover:outline-black focus:outline-black animate-bounce ">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25" className='m-auto' height={30} width={30}>
-                        <path d="m18.294 16.793-5.293 5.293V1h-1v21.086l-5.295-5.294-.707.707L12.501 24l6.5-6.5-.707-.707z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
+                <button className="hidden sm:block mb-[50px] ml-[3px] w-fit h-fit hover:bg-transparent hover:outline-black focus:outline-black animate-bounce ">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="none" className='m-auto'><path fill="url(#a)" d="M38.94 56.06a1.5 1.5 0 0 0 2.12 0l9.547-9.545a1.5 1.5 0 1 0-2.122-2.122L40 52.88l-8.485-8.486a1.5 1.5 0 1 0-2.122 2.122l9.546 9.546ZM38.5 25v30h3V25h-3Z" /><circle cx="40" cy="40" r="38.5" stroke="url(#b)" strokeWidth="3" /><defs><linearGradient id="a" x1="39.5" x2="39.5" y1="25" y2="55" gradientUnits="userSpaceOnUse"><stop stopColor="#008299" /><stop offset="1" stopColor="#00D8FF" /></linearGradient><linearGradient id="b" x1="40" x2="40" y1="0" y2="80" gradientUnits="userSpaceOnUse"><stop stopColor="#008299" /><stop offset="1" stopColor="#00D8FF" /></linearGradient></defs></svg>
+
                 </button>
             </div>
             <div className="sm:w-1/2 grow min-h-[516px] sm:h-auto">
