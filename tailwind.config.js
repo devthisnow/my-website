@@ -29,12 +29,21 @@ module.exports = {
         myerror: {
           DEFAULT: '#CE5B5B',
         },
+        mychatonline: {
+          DEFAULT: '#14C6B7',
+        },
+        mychatqst: {
+          DEFAULT: '#B5B3B2',
+        },
+        mychatasw: {
+          DEFAULT: '#B5D9DE',
+        },
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-        "my-grad-acc": "linear-gradient(to bottom, #008299, #0097b1, #00accb, #00c2e5, #00d8ff)",
+        "my-grad-acc": "linear-gradient(-107deg, #008299, #0097b1, #00accb, #00c2e5, #00d8ff)",
       },
       gridTemplateRows: {
         "animate-height-open": "1fr",

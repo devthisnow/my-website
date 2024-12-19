@@ -29,7 +29,7 @@ export default function ScrollingQuote(props) {
 
         // Scrolling 'easeInOutQuint' function implementation
         const t1 = scrollRatio - 1;
-        scrollRatio = scrollRatio < 0.5 ? 16 * Math.pow(scrollRatio, 5) : 1 + 16 * Math.pow(t1, 5);
+        // scrollRatio = scrollRatio < 0.5 ? 16 * Math.pow(scrollRatio, 5) : 1 + 16 * Math.pow(t1, 5);
 
         let scrollAmount = Math.round((scrollRatio) * (scrollWidth - viewWidth));
 
@@ -99,10 +99,12 @@ export default function ScrollingQuote(props) {
     }, [quoteVisible, options])
 
     return (
-        <section className="relative flex justify-start w-full min-h-[200vh] bg-gradient-to-b from-black from-50% to-gray-800 to-100% ">
+        <section id="promo-quote" className="relative flex justify-start w-full min-h-[200vh] bg-gradient-to-b from-black from-50% to-gray-800 to-100% overflow-clip ">
             <div className={`flex justify-center items-center w-full h-[100vh] sticky top-0 ${sectionClass}`}>
-                <div ref={quoteRef} className={`leading-none overflow-hidden max-h-[150px] pl-[80px] `}>
-                    <h4 className={`text-[55px] sm:text-[168px] text-white font-semibold text-right max-w-screen text-nowrap uppercase transition-all duration-750 ease-linear opacity-0 ${quoteClass} `}>THE ULTIMATE WEB DEVELOPER</h4>
+                <div ref={quoteRef} className={`leading-none overflow-hidden max-h-[150px] `}>
+                    <div className="px-[30dvw] w-fit">
+                        <h4 className={`w-fit text-[55px] sm:text-[69px] lg:text-[168px] text-white font-semibold text-right whitespace-nowrap uppercase transition-all duration-750 ease-linear opacity-0 ${quoteClass} `}>THE ULTIMATE WEB DEVELOPER</h4>
+                    </div>
                 </div>
             </div>
         </section>

@@ -9,7 +9,7 @@ import { answersArray, questionsArray } from "./ai-chat-array";
 export default function AiChat(props) {
 
     const [inputValue, setInputValue] = useState("");
-    const [hintsMarkup, setHintsMarkup] = useState([]);
+    const [hintlgarkup, setHintlgarkup] = useState([]);
     // const [answerNotFound, setAnswerNotFound] = useState(true);
     const [chatMessages, setChatMessages] = useState([{ a: "Please start typing and use AI hint for a question." }]);
     const scrollToMsg = useRef(null);
@@ -20,11 +20,11 @@ export default function AiChat(props) {
 
     useEffect(() => {
         scrollToMsg.current.scrollTop = scrollToMsg.current.scrollHeight;
-    }, [inputValue, hintsMarkup, chatMessages]);
+    }, [inputValue, hintlgarkup, chatMessages]);
 
     const searchHints = () => {
         const request = inputValue.replaceAll(/\s\s+/g, " ").split(" ");
-        setHintsMarkup(hintsMarkup => hintsMarkup >= 4 ? hintsMarkup.splice(0, 4) : []);
+        setHintlgarkup(hintlgarkup => hintlgarkup >= 4 ? hintlgarkup.splice(0, 4) : []);
 
         for (let k = 0; k < request.length; k++) {
             // console.log("I'm here and k =", k);
@@ -58,14 +58,14 @@ export default function AiChat(props) {
 
         if (inputValue != "") {
             for (let i = 0; i < hints.length && i < 4; i++) {
-                setHintsMarkup((hintsMarkup) => [...hintsMarkup,
+                setHintlgarkup((hintlgarkup) => [...hintlgarkup,
                 <div key={hints[i][1] + "-" + hints[i][2] + "-" + i.toString()} id={hints[i][1] + "-" + hints[i][2] + "-" + i.toString()} onClick={(e) => sendQuestion(e)} className={"flex justify-start flex-row items-end gap-0.5 px-3 py-1 border border-slate-600 rounded-full hover:bg-slate-200 hover:cursor-pointer " + animationsArray[i]} >
                     <p className="text-pretty text-xs break-words">{hints[i][0]}</p>
                 </div >
                 ])
             };
         } else {
-            setHintsMarkup([]);
+            setHintlgarkup([]);
             return;
         }
     }
@@ -91,10 +91,10 @@ export default function AiChat(props) {
 
     const handleChange = (e) => {
         e.preventDefault();
-        if (hintsMarkup.length > 0) {
-            // console.log("I'm here", hintsMarkup[0].props.children.props.children);
-            // setChatMessages((chatMessages) => [...chatMessages, { q: hintsMarkup[0].props.children.props.children }]);
-            getAnswer(hintsMarkup[0].props.children.props.children);
+        if (hintlgarkup.length > 0) {
+            // console.log("I'm here", hintlgarkup[0].props.children.props.children);
+            // setChatMessages((chatMessages) => [...chatMessages, { q: hintlgarkup[0].props.children.props.children }]);
+            getAnswer(hintlgarkup[0].props.children.props.children);
         } else {
             // console.log("Now here");
             setChatMessages((chatMessages) => [...chatMessages, { q: inputValue }]);
@@ -132,33 +132,32 @@ export default function AiChat(props) {
     }
 
     return (
-        <div className="flex flex-col bg-mylightgray h-full rounded-[20px] sm:rounded-[34px] m-0">
-            <div id="chat-header" className="flex items-center justify-start min-h-[50px] bg-none border-b-[3px] border-mygray pl-[20px] gap-x-[10px]">
-                <Image src={avatarPicture} alt="Chat avatar icon" />
-                <p className="font-semibold text-[12px]">Let&apos;s chat</p>
+        <div id="AI-chat" className="flex flex-col bg-mylightgray h-full rounded-[20px] lg:rounded-[34px] max-w-[574px] lg:shadow-[2px_2px_8px_#E9EAE9]">
+            <div id="chat-header" className="flex items-center justify-start min-h-[51px] lg:min-h-[120px] bg-none border-b-[3px] border-mygray pl-[20px] pt-[2px] gap-x-[10px] lg:gap-x-[20px]">
+                <div className="relative h-full w-full max-w-[30px] max-h-[30px] lg:max-w-[50px] lg:max-h-[50px]">
+                    <Image className="absolute top-0 left-0 z-0 h-full w-full" src={avatarPicture} alt="Chat avatar icon" />
+                    <div className="absolute top-0 right-0 h-[10px] w-[10px] lg:size-[15px] bg-mychatonline rounded-full z-10" />
+                </div>
+                <p className="font-semibold text-[12px] lg:text-[28px] tracking-tight">
+                    Let&apos;s chat
+                </p>
             </div>
-            <div id="chat-mid" ref={scrollToMsg} className="flex flex-col overflow-y-auto h-full bg-none px-[20px] py-[30px]">
+            <div id="chat-mid" ref={scrollToMsg} className="flex flex-col gap-y-[15px] overflow-y-auto h-full text-[12px] lg:text-[18px] font-normal lg:font-medium bg-none px-[20px] pt-[30px]">
                 {
                     chatMessages.map((it, i) => {
                         if (Object.keys(it)[0] == "q")
                             return (
-                                <div key={"lndx" + i * 13} className="flex flex-row justify-end items-end gap-0.5 ml-4 ">
-                                    <div className="bg-slate-200 px-2 py-1 text-sm mb-3 rounded-l-md w-11/12 rounded-tr-md">
-                                        <p className="text-pretty break-words">{it.q}</p>
-                                    </div>
-                                    <div className="flex items-center justify-center min-w-3 min-h-3 mb-3 bg-slate-200 rounded-r-md rounded-tl-md">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="" className="w-2 h-2 stroke-slate-700">
-                                            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-                                        </svg>
+                                <div key={"lndx" + i * 13} className="flex flex-row justify-end items-end ">
+                                    <div className="bg-mychatqst rounded-l-[8px] w-10/12 rounded-tr-[8px]">
+                                        <p className="text-pretty p-[15px] break-words leading-tight">{it.q}</p>
                                     </div>
                                 </div>
                             );
                         else if (Object.keys(it)[0] == "a")
                             return (
-                                <div key={"mndx" + i * 17} className="flex justify-start flex-row items-end gap-0.5 mr-4">
-                                    <Image width={0} height={0} src="/favicon.ico" alt="" className="w-3 h-3 mb-3 rounded-l-md rounded-tr-md bg-slate-200" />
-                                    <div className="bg-slate-700 px-2 py-1 mr-4 text-sm mb-3 rounded-r-md w-11/12 rounded-tl-md">
-                                        <p className="text-pretty text-white break-words">{it.a}</p>
+                                <div key={"mndx" + i * 17} className="flex justify-start flex-row items-end ">
+                                    <div className="bg-mychatasw rounded-r-[8px] w-10/12 rounded-tl-[8px]">
+                                        <p className="text-pretty p-[15px] text-myblack break-words leading-tight">{it.a}</p>
                                     </div>
                                 </div>
                             );
@@ -167,31 +166,44 @@ export default function AiChat(props) {
             </div>
             {
                 // Hints rendering
-                <div id="chat-tips" className={"grid bg-slate-300 px-2 transition-all duration-300 ease-in-out " + (inputValue.trim() == "" ? "grid-rows-animate-height-closed" : "grid-rows-animate-height-open py-2")}>
-                    <div id="tips-header" className="flex flex-col items-start justify-start gap-1  bg-slate-300 mx-2 overflow-hidden">
-                        <p className="text-xs mb-1">Popular related questions:</p>
-                        {hintsMarkup.length == 0 && inputValue != "" ? <div className="w-10"><Image src={LoaderDots} alt="Loader icon" /></div> : hintsMarkup.map(it => it)}
+                <div id="chat-tips" className={"grid mb-[15px] bg-mylightgray px-[20px] transition-all duration-300 ease-in-out " + (inputValue.trim() == "" ? "grid-rows-animate-height-closed" : "grid-rows-animate-height-open py-[5px] ")}>
+                    <div id="tips-header" className="flex flex-col items-start justify-start gap-1 overflow-hidden">
+                        <p className="text-[12px] mb-[5px]">
+                            Popular related questions:
+                        </p>
+                        {
+                            hintlgarkup.length == 0 && inputValue != "" ?
+                                <div className="w-10">
+                                    <Image src={LoaderDots} alt="Loader icon" />
+                                </div>
+                                : hintlgarkup.map(it => it)
+                        }
                     </div>
                 </div>
             }
-            <div id="chat-send" className="flex min-h-12 bg-none">
-                <form className="flex items-center justify-between w-full" action="submit" onSubmit={(e) => handleChange(e)} >
-                    <input
-                        id="inputMessage"
-                        className="bg-mygray grow border-none rounded-full py-1 px-2 placeholder-myblack placeholder-opacity-60 ml-[20px] mb-[20px] pl-4 text-[12px] min-h-9 focus:outline-none"
-                        type="text"
-                        placeholder="Ask your question here..."
-                        value={inputValue}
-                        onChange={(e) => setInputValue(e.target.value)}
-                    />
-                    <button type="submit" className="w-9 h-9 rounded-full mx-[20px] mb-[20px] bg-my-grad-acc text-center disabled:opacity-65 enabled:-rotate-90 transition-all duration-200 ease-in-out" disabled={inputValue.trim() == "" ? true : false}>
-                        <svg className="m-auto" width="5" height="8" viewBox="0 0 5 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M4.85355 4.35355C5.04882 4.15829 5.04882 3.84171 4.85355 3.64645L1.67157 0.464469C1.47631 0.269207 1.15972 0.269208 0.964461 0.46447C0.7692 0.659733 0.7692 0.976315 0.964462 1.17158L3.79289 4L0.96447 6.82843C0.769208 7.02369 0.769208 7.34028 0.964471 7.53554C1.15973 7.7308 1.47632 7.7308 1.67158 7.53554L4.85355 4.35355ZM4 4.5L4.5 4.5L4.5 3.5L4 3.5L4 4.5Z" fill="white" />
-                        </svg>
-                        {/* <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 m-auto stroke-slate-700">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="m9 9 6-6m0 0 6 6m-6-6v12a6 6 0 0 1-12 0v-3" />
-                        </svg> */}
-                    </button>
+            <div id="chat-send" className="flex min-h-[70px] bg-mylightgray rounded-b-[20px] lg:rounded-b-[30px]">
+                <form className="flex items-end justify-between w-full " action="submit" onSubmit={(e) => handleChange(e)} >
+                    <div className="flex flex-row items-center justify-between bg-mygray grow mx-[20px] mb-[20px] rounded-full" >
+                        <input
+                            id="inputMessage"
+                            className="bg-transparent grow pl-[15px] lg:pl-[20px] text-[16px] lg:text-[18px]
+                            placeholder-myblack
+                            placeholder-opacity-60
+                            placeholder:text-[12px]
+                            placeholder:lg:text-[18px]
+                            focus:outline-none"
+                            type="text"
+                            placeholder="Ask your question here..."
+                            value={inputValue}
+                            onChange={(e) => setInputValue(e.target.value)}
+                        />
+                        <button type="submit" className="w-[30px] h-[30px] lg:w-[45px] lg:h-[45px] m-[5px] rounded-full bg-my-grad-acc text-center disabled:opacity-65 enabled:-rotate-90 transition-all duration-200 ease-in-out" disabled={inputValue.trim() == "" ? true : false}>
+                            <svg xmlns="http://www.w3.org/2000/svg" className="m-auto h-[12px] lg:h-[15px] " width="9" height="15" viewBox="0 0 9 15" fill="none"><path fill="#fff" fillRule="evenodd" d="M1.739.298 8.22 6.78a1.018 1.018 0 0 1 0 1.44L1.74 14.702a1.019 1.019 0 0 1-1.44-1.44L6.058 7.5.3 1.739a1.018 1.018 0 1 1 1.44-1.44Z" clipRule="evenodd" /></svg>
+                            {/* <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 m-auto stroke-slate-700">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="m9 9 6-6m0 0 6 6m-6-6v12a6 6 0 0 1-12 0v-3" />
+                            </svg> */}
+                        </button>
+                    </div>
                 </form>
             </div>
         </div >
