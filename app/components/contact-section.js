@@ -449,7 +449,7 @@ function SectionAfterSubmit(props) {
                     </p>
                     <div className="text-[18px] lg:text-[28px] pt-[30px] sm:p-0 whitespace-break-spaces leading-normal sm:leading-snug lg:leading-tight sm:-mb-[7px] lg:-mb-[8px]">
                         <p>Your form has been received.</p>
-                        <p>We'll be in touch soon.</p>
+                        <p>We&apos;ll be in touch soon.</p>
                     </div>
                 </div>
             </div>
