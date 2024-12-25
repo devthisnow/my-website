@@ -40,9 +40,6 @@ module.exports = {
         },
       },
       backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
         "my-grad-acc": "linear-gradient(-107deg, #008299, #0097b1, #00accb, #00c2e5, #00d8ff)",
       },
       gridTemplateRows: {
@@ -77,15 +74,43 @@ module.exports = {
             opacity: "0",
             transform: "translateY(-100%)",
           }
-        }
+        },
+        'just-fade-in': {
+          '0%': {
+            opacity: '0',
+          },
+          '100%': {
+            opacity: '1',
+          },
+        },
+        'slide-up': {
+          '0%': {
+            opacity: '0',
+            transform: 'translateY(15px)',
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'translateY(0)',
+          },
+        },
+        'fade-out': {
+          '0%': {
+            opacity: '1',
+          },
+          '100%': {
+            opacity: '0',
+          },
+        },
       },
       animation: {
         'fade-in': 'fade-in 300ms ease-in-out 0ms',
         'fade-in-50': 'fade-in 300ms ease-in-out 50ms',
         'fade-in-100': 'fade-in 300ms ease-in-out 100ms',
         'fade-in-150': 'fade-in 300ms ease-in-out 150ms',
+        'justFadeIn': '300ms just-fade-in ease-out 0ms',
+        'slide-up': 'slide-up 600ms ease-in-out 0ms',
 
-        "scroll-me": 'scroll-anim auto linear forwards',
+        // "scroll-me": 'scroll-anim auto linear forwards',
       },
     },
   },

@@ -10,20 +10,12 @@ export default function ScrollingQuote(props) {
 
     const quoteRef = useRef(null);
 
-    const ioOffset = 10;
+    const ioOffset = 25;
 
     const scrollingQuote = (elm) => {
         const viewHeight = document.documentElement.clientHeight,
             viewWidth = document.documentElement.clientWidth,
-            scrollWidth = elm.scrollWidth,
-            yPos = elm.getBoundingClientRect().y,
-            winScrollY = window.scrollY,
-            parentOffset = elm.parentElement.offsetTop,
-            switcher = { state: true, value: 1 },
-            enterPoint = +(viewHeight * ioOffset / 100 - elm.getBoundingClientRect().height * (1 - options.threshold)).toFixed(1),
-            exitPoint = +(viewHeight - viewHeight * ioOffset / 100 - elm.getBoundingClientRect().height * options.threshold).toFixed(1);
-
-        // let scrollAmount = (switcher.value + (1 - switcher.value * 2) * Math.min(Math.max((Math.round(yPos) - enterPoint), 0) / (exitPoint - enterPoint), 1)) * (scrollWidth - viewWidth);
+            scrollWidth = elm.scrollWidth;
 
         let scrollRatio = elm.parentElement.offsetTop / viewHeight;
 
@@ -33,19 +25,12 @@ export default function ScrollingQuote(props) {
 
         let scrollAmount = Math.round((scrollRatio) * (scrollWidth - viewWidth));
 
-        // console.log("Scrolled from the top", winScrollY, initScrollAmount, scrollAmount, viewHeight, elm.parentElement.offsetTop / viewHeight);
-        // console.log("||-> scrolled from the parent start", scrollAmount, scrollWidth, viewWidth, scrollWidth - viewWidth);
-
-        // document.documentElement.style.setProperty("--scroll-quote", (((elm.getBoundingClientRect().y + window.scrollY) - document.documentElement.scrollTop) / viewHeight) * 100);
-
         requestAnimationFrame(() => {
 
             elm.scroll({
                 left: scrollAmount,
                 behavior: "auto",
             });
-            // quoteRef.current.firstChild.style.transform = `translateX(${-scrollAmount / 1}px)`
-            // console.log("rAF is working here...", scrollAmount.toFixed(2));
         })
 
     }

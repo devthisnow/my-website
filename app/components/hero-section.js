@@ -20,11 +20,11 @@ export default function HeroSection(props) {
                 {/* <TopMenu name="Menu for desktop and tablets" /> */}
                 <div name="dummyBlankSpace" className="h-auto sm:pt-[50px]" />
                 <div className="h-auto w-full">
-                    <h2 className="text-[44px] lg:text-[107px] font-semibold mb-[30px] lg:mb-[50px] pt-[50px] sm:p-0 sm:pr-[30px] leading-none">
+                    <h2 className="text-[44px] lg:text-[107px] font-semibold mb-[30px] lg:mb-[30px] pt-[50px] sm:p-0 sm:pr-[30px] leading-none ">
                         Ilia Kalugin
                     </h2>
-                    <p className="text-[22px] lg:text-[28px] w-[80dvw] sm:w-[40dvw] pb-[50px] sm:p-0 leading-tight tracking-normal">
-                        Certified Front-End Developer With An Advanced Skillset
+                    <p className="text-[22px] lg:text-[28px] w-[80dvw] sm:w-[40dvw] pb-[50px] sm:p-0 leading-normal tracking-normal">
+                        Certified Front-End Developer<br /> With An Advanced Skillset
                     </p>
                 </div>
                 <Link href="#point-of-difference">
@@ -35,12 +35,11 @@ export default function HeroSection(props) {
             </div>
             <div className="sm:w-1/2 grow min-h-[516px] md:min-w-[374px] sm:h-auto">
                 <Image
-                    className="object-cover h-full"
+                    className="object-cover w-full h-full"
                     src={myPic}
                     alt="Ilya Kalugin profile picture"
                     quality={85}
                     placeholder="blur"
-                    // width={"100%"}
                     // style={{ objectFit: "cover" }}
                     // height={"100%"}
                     priority

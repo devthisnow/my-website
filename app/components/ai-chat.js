@@ -9,7 +9,7 @@ import { answersArray, questionsArray } from "./ai-chat-array";
 export default function AiChat(props) {
 
     const [inputValue, setInputValue] = useState("");
-    const [hintlgarkup, setHintlgarkup] = useState([]);
+    const [hintsMarkup, setHintsMarkup] = useState([]);
     // const [answerNotFound, setAnswerNotFound] = useState(true);
     const [chatMessages, setChatMessages] = useState([{ a: "Please start typing and use AI hint for a question." }]);
     const scrollToMsg = useRef(null);
@@ -20,11 +20,22 @@ export default function AiChat(props) {
 
     useEffect(() => {
         scrollToMsg.current.scrollTop = scrollToMsg.current.scrollHeight;
-    }, [inputValue, hintlgarkup, chatMessages]);
+    }, [inputValue, hintsMarkup, chatMessages]);
 
     const searchHints = () => {
         const request = inputValue.replaceAll(/\s\s+/g, " ").split(" ");
-        setHintlgarkup(hintlgarkup => hintlgarkup >= 4 ? hintlgarkup.splice(0, 4) : []);
+        setHintsMarkup(hintsMarkup => {
+            if (hintsMarkup >= 4) {
+                hintsMarkup.splice(0, 4)
+            } else {
+                // setTimeout(() => {
+                //     if (hintsMarkup.length == 0) {
+                //         setHintsMarkup([<p key="999" className="text-pretty text-[12px] lg:text-[16px] break-words">Nothing found</p>]);
+                //     }
+                // }, 2000);
+                return [];
+            }
+        });
 
         for (let k = 0; k < request.length; k++) {
             // console.log("I'm here and k =", k);
@@ -58,24 +69,24 @@ export default function AiChat(props) {
 
         if (inputValue != "") {
             for (let i = 0; i < hints.length && i < 4; i++) {
-                setHintlgarkup((hintlgarkup) => [...hintlgarkup,
-                <div key={hints[i][1] + "-" + hints[i][2] + "-" + i.toString()} id={hints[i][1] + "-" + hints[i][2] + "-" + i.toString()} onClick={(e) => sendQuestion(e)} className={"flex justify-start flex-row items-end gap-0.5 px-3 py-1 border border-slate-600 rounded-full hover:bg-slate-200 hover:cursor-pointer " + animationsArray[i]} >
-                    <p className="text-pretty text-xs break-words">{hints[i][0]}</p>
+                setHintsMarkup((hintsMarkup) => [...hintsMarkup,
+                <div key={hints[i][1] + "-" + hints[i][2] + "-" + i.toString()} id={hints[i][1] + "-" + hints[i][2] + "-" + i.toString()} onClick={(e) => sendQuestion(e)} className={"flex justify-start flex-row items-end gap-0.5 px-3 py-1 border border-myblack rounded-[8px] hover:bg-mygray hover:cursor-pointer " + animationsArray[i]} >
+                    <p className="text-pretty text-[12px] lg:text-[16px] break-words">{hints[i][0]}</p>
                 </div >
                 ])
             };
         } else {
-            setHintlgarkup([]);
+            setHintsMarkup([]);
             return;
         }
     }
 
     useEffect(
         () => {
-            // Debouncing the request to optimal performance
+            // Debouncing the request for optimal performance
             const dbTimeoutId = setTimeout(() => {
                 searchHints();
-            }, 250);
+            }, 500);
             return () => clearTimeout(dbTimeoutId);
         },
         [inputValue]);
@@ -84,19 +95,22 @@ export default function AiChat(props) {
         const hintIndex = e.currentTarget.id.split("-")[2];
         const qaIndex = e.currentTarget.id.split("-")[1];
         const qaId = e.currentTarget.id.split("-")[0];
+        const randomTimeout = (Math.round(Math.random() * 100) % 3 + 3) * 4 * 100;
+
         setChatMessages((chatMessages) => [...chatMessages, { q: hints[hintIndex][0] }]);
-        setChatMessages((chatMessages) => [...chatMessages, { a: answersArray[qaIndex][qaId] }]);
+        setChatMessages((chatMessages) => [...chatMessages, { a: "Preparing answer..." }]);
+        setTimeout(() => {
+            setChatMessages((chatMessages) => [...chatMessages].slice(0, chatMessages.length - 1));
+            setChatMessages((chatMessages) => [...chatMessages, { a: answersArray[qaIndex][qaId] }]);
+        }, randomTimeout);
         setInputValue("");
     }
 
     const handleChange = (e) => {
         e.preventDefault();
-        if (hintlgarkup.length > 0) {
-            // console.log("I'm here", hintlgarkup[0].props.children.props.children);
-            // setChatMessages((chatMessages) => [...chatMessages, { q: hintlgarkup[0].props.children.props.children }]);
-            getAnswer(hintlgarkup[0].props.children.props.children);
+        if (hintsMarkup.length > 0) {
+            getAnswer(hintsMarkup[0].props.children.props.children);
         } else {
-            // console.log("Now here");
             setChatMessages((chatMessages) => [...chatMessages, { q: inputValue }]);
             scrollToMsg.current.scrollTop = scrollToMsg.current.scrollHeight;
             getAnswer(inputValue);
@@ -133,7 +147,7 @@ export default function AiChat(props) {
 
     return (
         <div id="AI-chat" className="flex flex-col bg-mylightgray h-full rounded-[20px] lg:rounded-[34px] max-w-[574px] lg:shadow-[2px_2px_8px_#E9EAE9]">
-            <div id="chat-header" className="flex items-center justify-start min-h-[51px] lg:min-h-[120px] bg-none border-b-[3px] border-mygray pl-[20px] pt-[2px] gap-x-[10px] lg:gap-x-[20px]">
+            <div id="chat-header" className="flex items-center justify-start min-h-[51px] lg:min-h-[120px] bg-none border-b-[2px] lg:border-b-[3px] border-mygray pl-[20px] pt-[2px] gap-x-[10px] lg:gap-x-[20px]">
                 <div className="relative h-full w-full max-w-[30px] max-h-[30px] lg:max-w-[50px] lg:max-h-[50px]">
                     <Image className="absolute top-0 left-0 z-0 h-full w-full" src={avatarPicture} alt="Chat avatar icon" />
                     <div className="absolute top-0 right-0 h-[10px] w-[10px] lg:size-[15px] bg-mychatonline rounded-full z-10" />
@@ -172,11 +186,11 @@ export default function AiChat(props) {
                             Popular related questions:
                         </p>
                         {
-                            hintlgarkup.length == 0 && inputValue != "" ?
+                            hintsMarkup.length == 0 && inputValue != "" ?
                                 <div className="w-10">
                                     <Image src={LoaderDots} alt="Loader icon" />
                                 </div>
-                                : hintlgarkup.map(it => it)
+                                : hintsMarkup.map(it => it)
                         }
                     </div>
                 </div>
@@ -199,9 +213,6 @@ export default function AiChat(props) {
                         />
                         <button type="submit" className="w-[30px] h-[30px] lg:w-[45px] lg:h-[45px] m-[5px] rounded-full bg-my-grad-acc text-center disabled:opacity-65 enabled:-rotate-90 transition-all duration-200 ease-in-out" disabled={inputValue.trim() == "" ? true : false}>
                             <svg xmlns="http://www.w3.org/2000/svg" className="m-auto h-[12px] lg:h-[15px] " width="9" height="15" viewBox="0 0 9 15" fill="none"><path fill="#fff" fillRule="evenodd" d="M1.739.298 8.22 6.78a1.018 1.018 0 0 1 0 1.44L1.74 14.702a1.019 1.019 0 0 1-1.44-1.44L6.058 7.5.3 1.739a1.018 1.018 0 1 1 1.44-1.44Z" clipRule="evenodd" /></svg>
-                            {/* <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 m-auto stroke-slate-700">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="m9 9 6-6m0 0 6 6m-6-6v12a6 6 0 0 1-12 0v-3" />
-                            </svg> */}
                         </button>
                     </div>
                 </form>

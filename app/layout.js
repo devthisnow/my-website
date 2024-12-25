@@ -8,7 +8,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="scroll-auto text-balance ">
+    <html lang="en" className="scroll-smooth text-balance ">
       <body className="has-[#opened-menu]:overflow-y-hidden overflow-x-hidden">
         <GlobalHeaderMenu />
         {children}

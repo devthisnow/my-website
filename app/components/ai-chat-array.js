@@ -1,6 +1,6 @@
 export const answersArray = [
     {
-        qa1: "I have had advanced experience since 2017.",
+        qa1: "I have had advanced experience since 2019.",
     },
     {
         qa2: "I can do web development for projects sized up to medium scale.",
@@ -54,7 +54,7 @@ export const answersArray = [
         qa18: "I worked with many clients, one of them is the US North Nokia division.",
     },
     {
-        qa19: "Online shops, SPAs, promo pages, etc. Please take a look at the Projects section of my website.",
+        qa19: "Online shops, SPAs, promo pages, etc. Please take a look at the Portfolio section of my website.",
     },
     {
         qa20: "It usually goes in 3 steps: task description, my codework, and the and the revision process.",

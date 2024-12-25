@@ -33,7 +33,7 @@ function SectionBeforeSubmit(props) {
     const [budget, setBudget] = useState({
         range: "mid",
         low: "< $1500",
-        mid: "~ $1500-$5000",
+        mid: "$1500-$5000",
         hi: "> $5000",
     });
 
@@ -183,12 +183,12 @@ function SectionBeforeSubmit(props) {
 
     return (
         <form ref={formRef} method="post" onSubmit={handleSubmitForm} noValidate >
-            <div className="flex flex-col lg:flex-row justify-start items-start w-full ">
-                <div className="lg:w-1/2 flex flex-row items-start ">
-                    <h3 className="text-[44px] lg:text-[107px] font-semibold capitalize lg:h-[200px] leading-[0.8em] ">
+            <div className="flex flex-col xl:flex-row justify-start items-start w-full ">
+                <div className="xl:w-1/2 flex flex-row items-start ">
+                    <h3 className="text-[44px] lg:text-[107px] font-semibold capitalize lg:h-[200px] lg:pr-[130px] leading-[1.1] lg:leading-[1] -mt-[6px]">
                         Get in touch</h3>
                 </div>
-                <div className="w-full lg:w-1/2 flex flex-col gap-y-[0px] lg:gap-y-[32px] pt-[50px] lg:p-0 ">
+                <div className="w-full xl:w-1/2 flex flex-col gap-y-[0px] lg:gap-y-[32px] pt-[50px] lg:p-0 ">
                     <div className="flex flex-col lg:flex-row grow lg:gap-[20px] min-h-[84px] lg:min-h-[98px] lg:max-h-[98px] lg:mb-[16px]">
                         <div className="flex flex-col justify-start mb-[10px] w-full min-h-[84px] lg:min-h-[98px] max-h-[84px] lg:max-h-[98px] ">
                             <label htmlFor="name"></label>
@@ -282,7 +282,7 @@ function SectionBeforeSubmit(props) {
                     </div>
                     <div className="flex flex-col justify-start mb-[10px] w-full max-w-full min-h-[100px] max-h-full lg:min-h-[260px] lg:max-h-[390px]">
                         <label htmlFor="message"></label>
-                        <div data-val={formInfo.message} className="order-2 peer grid w-full lg:max-w-[calc(50dvw-89px)] rounded-none text-[22px] lg:text-[28px] text-mywhite max-h-[390px]
+                        <div data-val={formInfo.message} className="order-2 peer grid w-full xl:max-w-[calc(50dvw-89px)] rounded-none text-[22px] lg:text-[28px] text-mywhite max-h-[390px]
                         after:content-[attr(data-val)'_']
                         after:whitespace-pre-wrap
                         after:invisible
@@ -297,8 +297,8 @@ function SectionBeforeSubmit(props) {
                         after:break-all
                         
                         ">
-                            <textarea name="message" placeholder="Message" type="text" id="message" className="w-full min-h-[58px] lg:min-h-[240px] max-h-auto block rounded-none bg-transparent border-b-[2px] lg:border-b-[3px] border-mywhite border-opacity-20 resize-none overflow-auto lg:overflow-auto lg:px-0 lg:max-w-[calc(50dvw-89px)] 
-                            max-w-[calc(100dvw-60px)] break-words
+                            <textarea name="message" placeholder="Message" type="text" id="message" className="w-full min-h-[52px] sm:min-h-[43px] lg:min-h-[240px] max-h-auto block rounded-none bg-transparent border-b-[2px] lg:border-b-[3px] border-mywhite border-opacity-20 resize-none overflow-auto lg:overflow-auto lg:px-0 xl:max-w-[calc(50dvw-89px)] 
+                            max-w-[calc(100dvw-60px)] break-words pb-[10px] sm:pb-0
                             row-start-1
                             col-start-1
                             row-end-2
@@ -313,7 +313,7 @@ function SectionBeforeSubmit(props) {
                                 onChange={(e) => handleSetState(e)}
                             />
                         </div>
-                        <div className="order-1 flex flex-row justify-between pb-[20px]
+                        <div className="order-1 flex flex-row justify-between pb-[15px] sm:pb-[10px] pt-[10px] lg:pt-0
                                 peer-has-[:placeholder-shown]:opacity-0
                                 peer-has-[:placeholder-shown]:translate-y-[6px]
                                 translate-y-0
@@ -382,7 +382,9 @@ function SectionBeforeSubmit(props) {
                                         setFormWarning({ ...formWarning, isShown: false });
                                     }}
                                 />
-                                <label htmlFor="budgetMid" className="w-full lg:w-auto pt-[1px] leading-3 cursor-pointer text-[22px] lg:text-[28px]">{budget.mid}</label>
+                                <label htmlFor="budgetMid" className="w-full lg:w-auto pt-[1px] leading-3 cursor-pointer text-[22px] lg:text-[28px]">
+                                    <span className="inline sm:hidden">{"~ "}</span>{budget.mid}
+                                </label>
                             </div>
                             <div className="flex flex-row basis-1/4 grow items-center w-full lg:w-fit gap-x-[6px] cursor-pointer ">
                                 <input placeholder="Budget" name="budget" type="radio" id="budgetHi" className="peer grid place-content-center rounded-full bg-transparent border-[1px] border-mygray h-[20px] w-[20px] lg:px-0 cursor-pointer
@@ -407,13 +409,13 @@ function SectionBeforeSubmit(props) {
                     </div>
                     <div className="flex flex-row justify-center lg:justify-start">
                         <div className="flex flex-col justify-center lg:justify-start lg:self-start w-full " >
-                            <div className="flex flex-col justify-center items-center lg:self-start pt-[10px] lg:p-0 ">
+                            <div className="flex flex-col justify-center items-center lg:self-start pt-[5px] lg:p-0 ">
                                 <p className={`text-[12px] font-normal text-myerror leading-none transition duration-200
                                     ${formWarning.isShown ? "translate-y-0 opacity-1" : "translate-y-[8px] opacity-0"}
                                     `}>{
                                         formWarning.isEmpty ? "Please fill out the form" : "Please check the missing data"
                                     }</p>
-                                <button type="submit" className="block lg:self-start mb-[10px] lg:mb-0 mt-[18px] w-full min-w-[210px] max-w-[360px] sm:max-w-[210px] h-[50px] lg:h-[80px] rounded-full p-[2px] lg:p-[3px] text-[14px] lg:text-[28px] leading-none transition duration-150 ease-in-out text-myaccent border-[2px] lg:border-[3px] bg-my-grad-acc border-none [background-size:200%]
+                                <button type="submit" className="block lg:self-start mb-[10px] lg:mb-0 mt-[18px] w-full min-w-[210px] max-w-[360px] sm:max-w-[210px] h-[50px] lg:h-[80px] rounded-full p-[2px] lg:p-[3px] text-[14px] lg:text-[28px] leading-none tracking-wide transition duration-150 ease-in-out text-myaccent border-[2px] lg:border-[3px] bg-my-grad-acc border-none [background-size:200%]
                             hover:[background-size:100%]
                             hover:text-myaccent
                             focus:bg-black
@@ -426,7 +428,7 @@ function SectionBeforeSubmit(props) {
                                     {!errors.isFormSubmitting && <p className="flex flex-row justify-center items-center w-full h-full bg-myblack rounded-full">Submit</p>}
                                     {errors.isFormSubmitting &&
                                         <div className="flex flex-row justify-center items-center w-full h-full bg-myblack rounded-full ">
-                                            <Image className="m-auto w-[50px] h-auto " src={LoaderDots} alt="Loader icon" />
+                                            <Image className="m-auto w-[30px] lg:w-[50px] h-auto " src={LoaderDots} alt="Loader icon" />
                                         </div>}
                                 </button>
                             </div>
@@ -440,14 +442,14 @@ function SectionBeforeSubmit(props) {
 
 function SectionAfterSubmit(props) {
     return (
-        <div className="grid place-content-stretch sm:place-content-center items-center min-h-[85dvh] text-mywhite animate-fade-in leading-none pb-[80px] ">
+        <div className="grid place-content-stretch sm:place-content-center items-center min-h-[75dvh] text-mywhite animate-fade-in leading-none pb-[80px] sm:pb-0 ">
             <div className="flex flex-col sm:flex-row gap-x-[25px] lg:gap-x-[50px] ">
                 <svg xmlns="http://www.w3.org/2000/svg" className="w-[100px] sm:w-[128px] lg:w-[229px] stroke-[2px] lg:stroke-[3px] " viewBox="0 0 100 80" fill="none"><rect width="98" height="78" x="1" y="1" stroke="#EBEBEB" vectorEffect="non-scaling-stroke" rx="4" /><path stroke="#EBEBEB" vectorEffect="non-scaling-stroke" d="M2 2c1.135 1.554 27.95 26.916 44.492 43.465a5.026 5.026 0 0 0 7.072.045L98 2" /><circle cx="50" cy="48" r="9" fill="#020804" stroke="#EBEBEB" vectorEffect="non-scaling-stroke" /></svg>
                 <div className="flex flex-col justify-between ">
                     <p className="text-[44px] lg:text-[107px] font-semibold pt-[50px] sm:p-0 leading-none sm:-mt-[6px] lg:-mt-[12px]">
                         Thank You!
                     </p>
-                    <div className="text-[18px] lg:text-[28px] pt-[30px] sm:p-0 whitespace-break-spaces leading-normal sm:leading-snug lg:leading-tight sm:-mb-[7px] lg:-mb-[8px]">
+                    <div className="text-[18px] lg:text-[28px] pt-[15px] sm:p-0 whitespace-break-spaces leading-normal sm:leading-snug lg:leading-tight sm:-mb-[5px] lg:-mb-[8px]">
                         <p>Your form has been received.</p>
                         <p>We&apos;ll be in touch soon.</p>
                     </div>

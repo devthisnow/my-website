@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="80" height="100%" viewBox="1 9 22 6" fill="#334155">
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="100%" viewBox="1 9 22 6" fill="#1BB2C8">
   <circle cx="4" cy="12" r="0">
     <animate begin="0;spinner_z0Or.end" attributeName="r" calcMode="spline" dur="0.5s" keySplines=".36,.6,.31,1" values="0;3" fill="freeze"/>
     <animate begin="spinner_OLMs.end" attributeName="cx" calcMode="spline" dur="0.5s" keySplines=".36,.6,.31,1" values="4;12" fill="freeze"/>
