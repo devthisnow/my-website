@@ -133,7 +133,7 @@ export function Footer(props) {
                             <Link href="https://www.linkedin.com/in/ilia-kalugin-18b067118" target="_blank" rel="noopener noreferrer">
                                 <Image
                                     className="dark:drop-shadow-[0_0_0.3rem_#ffffff70] size-[40px] lg:min-h-[50px] lg:min-w-[50px] sm:size-[30px]]"
-                                    src="/icons/Linkedin.svg"
+                                    src="/icons/Linked-in.svg"
                                     alt="LinkedIn icon"
                                     width={50}
                                     height={50}
