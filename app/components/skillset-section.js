@@ -39,14 +39,14 @@ export default function Skillset(props) {
                             <li>JavaScript (TypeScript)</li>
                             <li>CSS <span className="hidden sm:inline-block">(SASS/SCSS, PostCSS, Bootstrap, Tailwind)</span></li>
                             <li>HTML</li>
-                            <li>Redux<span className="hidden sm:inline-block"> (Toolkit, thunk)</span>, MobX</li>
+                            <li>Redux<span className="hidden sm:inline"> (Toolkit, thunk)</span>, MobX</li>
                             <li>Next.js <span className="hidden sm:inline-block">(routing, CSR, SSR)</span></li>
                             <li>React Router, <span className="hidden sm:inline-block">React Query, </span>RTK Query</li>
                             <li>REST API, WebSockets<span className="hidden sm:inline-block">, Long Polling</span></li>
                             <li>Formik, React Hook Form, Yup</li>
                             <li>Webpack, Vite, ESLint, Prettier</li>
                             <li>Node.js (npm)</li>
-                            <li>Jest, <span className="hidden sm:inline-block">React Testing Library, </span>Mocha, Vitest</li>
+                            <li>Jest, <span className="hidden sm:inline">React Testing Library, </span>Mocha, Vitest</li>
                             <li>MVC, BEM, Feature-Sliced Design<span className="hidden sm:inline-block">, Accessibility</span></li>
                             <li>Styled-Components, Material UI<span className="hidden sm:inline-block">, Ant Design of React</span></li>
                             <li>Agile, Waterfall, SCRUM</li>

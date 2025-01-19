@@ -1,3 +1,5 @@
+import { GoogleAnalytics } from '@next/third-parties/google'
+
 import { GlobalHeaderMenu, Footer } from "./components/top-menu-n-footer";
 import "./globals.css";
 
@@ -14,6 +16,7 @@ export default function RootLayout({ children }) {
         {children}
         <Footer />
       </body>
+      <GoogleAnalytics gaId="G-JSC7YCEM7V" />
     </html >
   );
 }

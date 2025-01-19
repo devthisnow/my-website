@@ -130,7 +130,7 @@ export function Footer(props) {
                     </li>
                     <li>
                         <div className="flex items-center text-gray-700 rounded-full">
-                            <Link href="https://www.linkedin.com/in/ilia-kalugin-18b067118" target="_blank" rel="noopener noreferrer">
+                            <Link href="https://www.linkedin.com/in/ilia-webdev" target="_blank" rel="noopener noreferrer">
                                 <Image
                                     className="dark:drop-shadow-[0_0_0.3rem_#ffffff70] size-[40px] lg:min-h-[50px] lg:min-w-[50px] sm:size-[30px]]"
                                     src="/icons/Linked-in.svg"
@@ -172,7 +172,7 @@ export function Footer(props) {
                     </li>
                 </ul>
             </div >
-            <p className="pt-[30px] sm:self-end leading-tight sm:pt-[20px] lg:pt-[15px] sm:p-0 sm:col-start-1 sm:row-start-2 sm:col-span-2 text-[12px] overflow-hidden text-left"><span className="inline-block">© {currentYear}. All rights reserved.</span> <span className="block sm:inline-block">Designed and coded on the house.</span></p>
+            <p className="pt-[30px] sm:self-end leading-tight sm:pt-[20px] lg:pt-[15px] sm:p-0 sm:col-start-1 sm:row-start-2 sm:col-span-2 text-[12px] overflow-hidden text-left"><span className="inline-block">© {currentYear}. All rights reserved.</span> <span className="block sm:inline-block">Designed and coded on the house. Ver.1.0.3</span></p>
         </footer >
     );
 };
